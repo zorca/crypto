@@ -1,0 +1,58 @@
+{
+  "default": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "index",
+    "params": []
+  },
+  "load/(\\w+)": {
+    "controller": "\\Apps\\Web\\Controllers\\LoadController",
+    "method": "load",
+    "params": [
+      "$1"
+    ]
+  },
+  "list": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "list",
+    "params": []
+  },
+  "view/license": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "viewLicence",
+    "params": []
+  },
+  "view/user": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "viewUser",
+    "params": []
+  },
+  "view/containers": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "viewContainers",
+    "params": []
+  },
+  "view/providers": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "viewProviders",
+    "params": []
+  },
+  "error/(\\d+)(.+)?": {
+    "controller": "\\Apps\\Web\\Controllers\\ErrorController",
+    "method": "error",
+    "params": [
+      "$1"
+    ]
+  },
+  "report/result": {
+    "controller": "\\Apps\\Web\\Controllers\\HistoryController",
+    "method": "result",
+    "params": []
+  },
+  "(.+)?": {
+    "controller": "\\Apps\\Web\\Error",
+    "method": "error",
+    "params": [
+      404
+    ]
+  }
+}

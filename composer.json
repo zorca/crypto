@@ -1,0 +1,21 @@
+{
+  "name": "zte/crypto_pro_api",
+  "autoload": {
+    "psr-4": {
+      "Apps\\": "Apps/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Алексей Зорин",
+      "email": "zorinalexey59292@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "cocur/slugify": "^4.1",
+    "cloud-castle/file-system": "^1.0"
+  },
+  "config": {
+  }
+}

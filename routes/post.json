@@ -1,0 +1,53 @@
+{
+  "sign/file(/attach)?": {
+    "controller": "\\Apps\\Web\\Controllers\\SignController",
+    "method": "signFile",
+    "params": [
+      "$1"
+    ]
+  },
+  "sign/message": {
+    "controller": "\\Apps\\Web\\Controllers\\SignController",
+    "method": "signMessage",
+    "params": []
+  },
+  "extract/file": {
+    "controller": "\\Apps\\Web\\Controllers\\SignController",
+    "method": "extractFile",
+    "params": []
+  },
+  "extract/message": {
+    "controller": "\\Apps\\Web\\Controllers\\SignController",
+    "method": "extractMessage",
+    "params": []
+  },
+  "set/container": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "container",
+    "params": []
+  },
+  "set/license": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "setLicense",
+    "params": []
+  },
+  "send/history": {
+    "controller": "\\Apps\\Web\\Controllers\\HistoryController",
+    "method": "send",
+    "params": []
+  },
+  "error/(\\d+)(.+)?": {
+    "controller": "\\Apps\\Web\\Error",
+    "method": "error",
+    "params": [
+      "$1"
+    ]
+  },
+  "(.+)?": {
+    "controller": "\\Apps\\Web\\Error",
+    "method": "error",
+    "params": [
+      404
+    ]
+  }
+}

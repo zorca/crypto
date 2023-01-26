@@ -1,0 +1,37 @@
+{
+  "server::start(\\s)?(\\w+)?(\\s)?(\\d+)?": {
+    "controller": "\\Apps\\Console\\Server",
+    "method": "start",
+    "params": [
+    ]
+  },
+  "serve": {
+    "controller": "\\Apps\\Console\\Server",
+    "method": "start",
+    "params": [
+    ]
+  },
+  "megrate": {
+    "controller": "\\Apps\\Console\\Megrate",
+    "method": "run",
+    "params": [
+    ]
+  },
+  "server::open(\\s)?(\\w+)?(\\s)?(\\d+)?": {
+    "controller": "\\Apps\\Console\\Server",
+    "method": "open",
+    "params": [
+      "$2",
+      "$4"
+    ]
+  },
+  "(\\w+)::(\\w+)(.+)?": {
+    "controller": "\\Apps\\Console\\Console",
+    "method": "getModel",
+    "params": [
+      "$1",
+      "$2",
+      "$3"
+    ]
+  }
+}

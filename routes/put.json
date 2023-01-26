@@ -1,0 +1,19 @@
+{
+  "create/request": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "createRequestForCertificate",
+    "params": []
+  },
+  "create/key": {
+    "controller": "\\Apps\\Web\\Controllers\\MainController",
+    "method": "KeyGenerate",
+    "params": []
+  },
+  "scoring/user(/(\\w+))?": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "scoring",
+    "params": [
+      "$2"
+    ]
+  }
+}

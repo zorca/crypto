@@ -1,0 +1,53 @@
+
+
+23.01.2023 12:18:09 - PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'crypto.users' doesn't exist in /var/www/crypto-api/Apps/Core/DataBase/DataBase.php:93
+Stack trace:
+#0 /var/www/crypto-api/Apps/Core/DataBase/DataBase.php(93): PDOStatement->execute()
+#1 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(335): Apps\Core\DataBase\DataBase->query()
+#2 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(314): Apps\Core\AbstractClasses\AbstractModel->check()
+#3 /var/www/crypto-api/Apps/Web/Services/Users.php(56): Apps\Core\AbstractClasses\AbstractModel->save()
+#4 /var/www/crypto-api/Apps/Web/Controllers/UserController.php(60): Apps\Web\Services\Users::createNewUserByCertificate()
+#5 [internal function]: Apps\Web\Controllers\UserController->postContainerAction()
+#6 /var/www/crypto-api/Apps/Core/Router/Router.php(121): call_user_func_array()
+#7 /var/www/crypto-api/Apps/Core/Router/Router.php(103): Apps\Core\Router\Router->command()
+#8 /var/www/crypto-api/public/index.php(11): Apps\Core\Router\Router->run()
+#9 {main}
+
+23.01.2023 12:24:17 - PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'crypto.users' doesn't exist in /var/www/crypto-api/Apps/Core/DataBase/DataBase.php:93
+Stack trace:
+#0 /var/www/crypto-api/Apps/Core/DataBase/DataBase.php(93): PDOStatement->execute()
+#1 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(335): Apps\Core\DataBase\DataBase->query()
+#2 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(314): Apps\Core\AbstractClasses\AbstractModel->check()
+#3 /var/www/crypto-api/Apps/Web/Services/Users.php(56): Apps\Core\AbstractClasses\AbstractModel->save()
+#4 /var/www/crypto-api/Apps/Web/Controllers/UserController.php(42): Apps\Web\Services\Users::createNewUserByCertificate()
+#5 [internal function]: Apps\Web\Controllers\UserController->postContainerAction()
+#6 /var/www/crypto-api/Apps/Core/Router/Router.php(121): call_user_func_array()
+#7 /var/www/crypto-api/Apps/Core/Router/Router.php(103): Apps\Core\Router\Router->command()
+#8 /var/www/crypto-api/public/index.php(11): Apps\Core\Router\Router->run()
+#9 {main}
+
+23.01.2023 12:24:21 - PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'crypto.users' doesn't exist in /var/www/crypto-api/Apps/Core/DataBase/DataBase.php:93
+Stack trace:
+#0 /var/www/crypto-api/Apps/Core/DataBase/DataBase.php(93): PDOStatement->execute()
+#1 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(335): Apps\Core\DataBase\DataBase->query()
+#2 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(314): Apps\Core\AbstractClasses\AbstractModel->check()
+#3 /var/www/crypto-api/Apps/Web/Services/Users.php(56): Apps\Core\AbstractClasses\AbstractModel->save()
+#4 /var/www/crypto-api/Apps/Web/Controllers/UserController.php(42): Apps\Web\Services\Users::createNewUserByCertificate()
+#5 [internal function]: Apps\Web\Controllers\UserController->postContainerAction()
+#6 /var/www/crypto-api/Apps/Core/Router/Router.php(121): call_user_func_array()
+#7 /var/www/crypto-api/Apps/Core/Router/Router.php(103): Apps\Core\Router\Router->command()
+#8 /var/www/crypto-api/public/index.php(11): Apps\Core\Router\Router->run()
+#9 {main}
+
+23.01.2023 12:30:02 - PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'crypto.users' doesn't exist in /var/www/crypto-api/Apps/Core/DataBase/DataBase.php:93
+Stack trace:
+#0 /var/www/crypto-api/Apps/Core/DataBase/DataBase.php(93): PDOStatement->execute()
+#1 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(335): Apps\Core\DataBase\DataBase->query()
+#2 /var/www/crypto-api/Apps/Core/AbstractClasses/AbstractModel.php(314): Apps\Core\AbstractClasses\AbstractModel->check()
+#3 /var/www/crypto-api/Apps/Web/Services/Users.php(56): Apps\Core\AbstractClasses\AbstractModel->save()
+#4 /var/www/crypto-api/Apps/Web/Controllers/UserController.php(42): Apps\Web\Services\Users::createNewUserByCertificate()
+#5 [internal function]: Apps\Web\Controllers\UserController->postContainerAction()
+#6 /var/www/crypto-api/Apps/Core/Router/Router.php(121): call_user_func_array()
+#7 /var/www/crypto-api/Apps/Core/Router/Router.php(103): Apps\Core\Router\Router->command()
+#8 /var/www/crypto-api/public/index.php(11): Apps\Core\Router\Router->run()
+#9 {main}

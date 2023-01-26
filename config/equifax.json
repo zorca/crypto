@@ -1,0 +1,14 @@
+{
+  "partnerid": "ECH",
+  "orgName": "ООО \"Микрокредитная организация \"Бравил ХД\"\"",
+  "ogrn": "1167847454642",
+  "inn": "7801323165",
+  "type": "1234577534",
+  "certSha1": "5da4625202e770c276564085b80bcef02b5c246a",
+  "cryptProdCertSha1": "c4b7fd8a1248d6c986055d278248aaa4bf919446",
+  "cryptTestCertSha1": "6574839a35a2238eb8cd7bc487c774ee75dbbb69",
+  "test": true,
+  "url": "https://bki-b2b.scoring.ru/cr4.php",
+  "username": "barvilhd_admin",
+  "password": "b4MHX433YwTt9r3ecU"
+}

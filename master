@@ -1,0 +1,17 @@
+<?php
+
+use \Apps\Core\Config\Config;
+
+require_once __DIR__ . DIRECTORY_SEPARATOR .
+    'bootstrap' . DIRECTORY_SEPARATOR .
+    'bootstrap.php';
+
+$config = new Config();
+$di = new Apps\Core\Apps\Apps($config);
+$router = new \Apps\Core\Router\Router($di->Server);
+unset($argv[0]);
+$router::$patch = implode(' ', $argv);
+$data = $router->run();
+print_r($data);
+echo memoryUsage();
+return $data;

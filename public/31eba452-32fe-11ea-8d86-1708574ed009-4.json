@@ -1,0 +1,119 @@
+{
+  "uid": {
+    "id": "31eba452-32fe-11ea-8d86-1708574ed009-4"
+  },
+  "deal": {
+    "ratio": "1",
+    "date": "30.12.2013",
+    "category": "1",
+    "type": "1",
+    "purpose": "19",
+    "sign_credit": "1",
+    "sign_credit_card": "0",
+    "sign_renovation": "0",
+    "sign_deal_cash_source": "1",
+    "sign_deal_cash_subject": "1",
+    "end_date": "30.12.2018"
+  },
+  "contract_amount": {
+    "sum": "300000,00",
+    "currency": "RUB"
+  },
+  "payment_terms": {
+    "op_next_payout_sum": "0,00",
+    "percent_next_payout_sum": "0,00"
+  },
+  "cred_start_debt": {
+    "date": "30.12.2013"
+  },
+  "debt": {
+    "sign": "1",
+    "sign_calc_last_payout": "0",
+    "calc_date": "28.11.2022",
+    "first_sum": "300000,00",
+    "sum": "160382,61",
+    "op_sum": "149046,91",
+    "percent_sum": "8935,70",
+    "other_sum": "2400,00",
+    "sign_unaccepted_grace_period": "0"
+  },
+  "debt_current": {
+    "date": "-",
+    "sign_calc_last_payout": "0",
+    "calc_date": "28.11.2022",
+    "sum": "0,00"
+  },
+  "debt_overdue": {
+    "date": "28.02.2017",
+    "sign_calc_last_payout": "0",
+    "calc_date": "28.11.2022",
+    "sum": "160382,61",
+    "op_sum": "149046,91",
+    "percent_sum": "8935,70",
+    "other_sum": "2400,00",
+    "op_miss_payout_date": "30.12.2018",
+    "percent_miss_payout_date": "30.12.2018"
+  },
+  "payments": {
+    "last_payout_date": "28.02.2017",
+    "last_payout_sum": "4167,00",
+    "last_payout_op_sum": "4167,00",
+    "last_payout_percent_sum": "0,00",
+    "last_payout_other_sum": "0,00",
+    "paid_sum": "306043,00",
+    "paid_op_sum": "150953,09",
+    "paid_percent_sum": "147289,91",
+    "paid_other_sum": "7800,00",
+    "size_payments_type": "2",
+    "payments_deadline_type": "1",
+    "overdue_day": "2130"
+  },
+  "average_payment": {
+    "sum": "160382,61",
+    "date": "28.11.2022"
+  },
+  "extra_data": [
+    {
+      "@attributes": {
+        "id": "2",
+        "value": "1653851487"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "3",
+        "value": "0"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "5",
+        "value": "1"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "6",
+        "value": "30.11.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "7",
+        "value": "30.11.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "8",
+        "value": "30.11.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "9",
+        "value": "4"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "db_type": "mysql",
+  "db_name": "crypto",
+  "dsn": "mysql:host=localhost;port=3306;dbname=crypto",
+  "username": "crypto",
+  "password": 9205655532,
+  "options": {
+    "PDO::MYSQL_ATTR_INIT_COMMAND": "SET NAMES UTF8",
+    "PDO::ATTR_ERRMODE": "PDO::ERRMODE_EXCEPTION",
+    "PDO::MYSQL_ATTR_USE_BUFFERED_QUERY": true,
+    "PDO::MYSQL_ATTR_COMPRESS ": 50,
+    "PDO::MYSQL_ATTR_USE_BUFFERED_QUERY": true
+  }
+}

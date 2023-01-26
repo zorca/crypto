@@ -1,0 +1,171 @@
+{
+  "uid": {
+    "id": "32c73783-32fe-11ea-8d86-1708574ed009-c"
+  },
+  "deal": {
+    "ratio": "1",
+    "date": "18.07.2006",
+    "category": "1",
+    "type": "5",
+    "purpose": "19",
+    "sign_credit": "1",
+    "sign_credit_card": "1",
+    "sign_renovation": "0",
+    "sign_deal_cash_source": "1",
+    "sign_deal_cash_subject": "1",
+    "end_date": "18.07.2023"
+  },
+  "contract_amount": {
+    "sum": "234000,00",
+    "currency": "RUB"
+  },
+  "payment_terms": {
+    "op_next_payout_sum": "0,00",
+    "percent_next_payout_sum": "4085,19",
+    "percent_next_payout_date": "12.12.2022",
+    "regularity": "3"
+  },
+  "contract_changes": [
+    {
+      "sign": "1",
+      "date": "30.05.2018",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "30.05.2018",
+      "end_date": "18.07.2018"
+    },
+    {
+      "sign": "1",
+      "date": "06.06.2018",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "06.06.2018",
+      "end_date": "18.07.2019"
+    },
+    {
+      "sign": "1",
+      "date": "06.06.2019",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "06.06.2019",
+      "end_date": "18.07.2020"
+    },
+    {
+      "sign": "1",
+      "date": "04.06.2020",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "04.06.2020",
+      "end_date": "18.07.2021"
+    },
+    {
+      "sign": "1",
+      "date": "07.06.2021",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "07.06.2021",
+      "end_date": "18.07.2022"
+    },
+    {
+      "sign": "1",
+      "date": "03.06.2022",
+      "type": "3",
+      "special_type": "11",
+      "apply_date": "03.06.2022",
+      "end_date": "18.07.2023"
+    }
+  ],
+  "cred_start_debt": {
+    "date": "29.08.2014"
+  },
+  "debt": {
+    "sign": "1",
+    "sign_calc_last_payout": "0",
+    "calc_date": "12.12.2022",
+    "first_sum": "239162,33",
+    "sum": "193335,76",
+    "op_sum": "167473,67",
+    "percent_sum": "13105,59",
+    "other_sum": "12756,50",
+    "sign_unaccepted_grace_period": "0"
+  },
+  "debt_current": {
+    "date": "-",
+    "sign_calc_last_payout": "0",
+    "calc_date": "12.12.2022",
+    "sum": "0,00"
+  },
+  "debt_overdue": {
+    "date": "18.06.2015",
+    "sign_calc_last_payout": "0",
+    "calc_date": "12.12.2022",
+    "sum": "193335,76",
+    "op_sum": "167473,67",
+    "percent_sum": "13105,59",
+    "other_sum": "12756,50",
+    "op_miss_payout_date": "09.12.2022",
+    "percent_miss_payout_date": "09.12.2022"
+  },
+  "payments": {
+    "last_payout_date": "29.06.2016",
+    "last_payout_sum": "24,00",
+    "last_payout_op_sum": "24,00",
+    "last_payout_percent_sum": "0,00",
+    "last_payout_other_sum": "0,00",
+    "paid_sum": "2403851,00",
+    "paid_op_sum": "0,00",
+    "paid_percent_sum": "0,00",
+    "paid_other_sum": "2403851,00",
+    "size_payments_type": "2",
+    "payments_deadline_type": "1",
+    "overdue_day": "2751"
+  },
+  "average_payment": {
+    "sum": "84989,13",
+    "date": "12.12.2022"
+  },
+  "extra_data": [
+    {
+      "@attributes": {
+        "id": "2",
+        "value": "1655008817"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "3",
+        "value": "0"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "5",
+        "value": "1"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "6",
+        "value": "14.11.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "7",
+        "value": "15.12.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "8",
+        "value": "15.12.2022"
+      }
+    },
+    {
+      "@attributes": {
+        "id": "9",
+        "value": "4"
+      }
+    }
+  ]
+}

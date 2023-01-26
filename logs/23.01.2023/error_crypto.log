@@ -1,0 +1,411 @@
+
+
+23.01.2023 10:52:49 - sudo -u www-data /opt/cprocsp/sbin/amd64/cpconfig -license -setlocal 5050T-80000-017A6-YGRZU-UTVXT - 0
+sudo -u www-data /opt/cprocsp/sbin/amd64/cpconfig -license -view - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:53:52 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:53:52 - sudo -u www-data /opt/cprocsp/sbin/amd64/cpconfig -license -view - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - /opt/cprocsp/sbin/amd64/cpconfig -defprov -view_type - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 10:54:01 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 11:21:58 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 11:21:58 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr -list - 44
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:08 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo -u www-data /opt/cprocsp/bin/amd64/csptestf -keyset -container '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' -info - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo -u www-data /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/е1.cer' -cont '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' - 0
+sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/root/aucbr-E32A8B7149692178FBDE279355947A99E4B04AA4.cer - 2
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:18:09 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo -u www-data /opt/cprocsp/bin/amd64/csptestf -keyset -container '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' -info - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo -u www-data /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/е1.cer' -cont '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:17 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:20 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:20 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:20 - sudo -u www-data /opt/cprocsp/bin/amd64/csptestf -keyset -container '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' -info - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:20 - sudo -u www-data /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:20 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/е1.cer' -cont '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:24:21 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:01 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo -u www-data /opt/cprocsp/bin/amd64/csptestf -keyset -container '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' -info - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo -u www-data /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/е1.cer' -cont '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:30:02 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - echo $USER - 0
+cd /var/opt/cprocsp/keys/www-data && pwd - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo -u www-data /opt/cprocsp/bin/amd64/csptestf -keyset -container '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' -info - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo -u www-data /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr --inst -file '/var/www/crypto-api/private/certificates/е1.cer' -cont '\\.\HDIMAGE\pfx-62c49e89-103f-e9e3-9fef-bc5a49b63eba' - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:33:05 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:37:44 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:37:44 - sudo -u www-data /opt/cprocsp/bin/amd64/certmgr -list - 0
+sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:37:44 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1
+
+
+23.01.2023 12:37:44 - sudo chmod 777 -R /var/opt/cprocsp/keys/ - 1

@@ -1,0 +1,31 @@
+# Запрет прямого доступа к файлу .htaccess
+<Files ".htaccess">
+    deny from all
+</Files>
+
+# Главный индексный файл
+DirectoryIndex index.php
+
+# Кодировка файлов сервера по умолчанию
+AddDefaultCharset UTF-8
+
+# Правила перенаправлени
+RewriteEngine On
+RewriteBase /
+
+# Перенаправление всех запросов на https
+#RewriteCond %{HTTPS} =off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+
+# Перенаправление на страницу без / в конце
+RewriteCond %{REQUEST_URI} !\?
+RewriteCond %{REQUEST_URI} !\&
+RewriteCond %{REQUEST_URI} !\=
+RewriteCond %{REQUEST_URI} !\.
+RewriteCond %{REQUEST_URI} ![^\/]$
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# Перенаправление всех запросов на единую точку входа
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$  index.php
