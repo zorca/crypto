@@ -2,23 +2,23 @@
 
 namespace Apps\Web\Controllers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
-use Apps\Core\Config\Config;
-use Apps\Core\Request\Put;
 use Apps\Services\CryptoPro\Certificate as Cert;
-use Apps\Services\CryptoPro\Certificates;
 use Apps\Services\CryptoPro\Curl\Curl as CryptoCurl;
-use Apps\Services\Scorings\Scorings\Individual;
+use Apps\Core\Config\Config;
+use Apps\Services\CryptoPro\Certificates;
 use Apps\Web\Services\Certificate;
-use Apps\Web\Services\EquifaxScoringResult;
 use Apps\Web\Services\File;
-use Apps\Web\Services\GetPin;
 use Apps\Web\Services\KeysContainer;
+use Apps\Services\Scorings\Scorings\Individual;
 use Apps\Web\Services\Scorings;
 use Apps\Web\Services\Users;
+use Apps\Web\Services\GetPin;
+use Apps\Core\Request\Put;
+use Apps\Web\Services\EquifaxScoringResult;
 
 /**
  * Класс UserController
@@ -51,10 +51,10 @@ class UserController
             return $certInfo->user;
         }
         $data['error'] = true;
-        if (!$certificate) {
+        if ( ! $certificate) {
             $data['msg'][] = 'Файл сертификата не отправлен';
         }
-        if (!$container) {
+        if ( ! $container) {
             $data['msg'][] = 'Ключевой контейнер не отправлен';
         }
         return $data;
@@ -92,10 +92,28 @@ class UserController
             if ($response) {
                 $xmlString = Scorings::getXml($response);
             }
-            $result = new EquifaxScoringResult($xmlString);
-            return $result->toArray();
+            return new EquifaxScoringResult($xmlString);
         }
         return $user;
+    }
+
+    public function getViewUserAction()
+    {
+        $user = Users::instance()->getUser();
+        $certificates = Certificates::instance()->getCertsList();
+        foreach ($certificates as $certificate) {
+            if ($certificate->sha1 === $user->thumbprint) {
+                $user->certInfo = $certificate;
+                unset(
+                    $user->DB, $user->count, $user->factory,
+                    $user->bindParam, $user->className,
+                    $user->tableStructure, $user->certInfo->separator,
+                    $user->certInfo->provider->separator
+                );
+                return $user;
+            }
+        }
+        return ['error' => true, 'message' => 'Не найден пользователь или сертификат'];
     }
 
 }
