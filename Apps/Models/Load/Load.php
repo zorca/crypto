@@ -2,7 +2,7 @@
 
 namespace Apps\Models\Load;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

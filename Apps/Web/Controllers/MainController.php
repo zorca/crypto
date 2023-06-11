@@ -2,7 +2,7 @@
 
 namespace Apps\Web\Controllers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

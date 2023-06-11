@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -51,8 +51,7 @@ class Certificate extends Bin
         'CA cert URL' => 'setCaUrl',
         'OCSP URL' => 'setCdp',
         'URL списка отзыва' => 'setCdp',
-        'CDP'
-        ,
+        'CDP'=> 'setCdp',
         'Назначение/EKU',
         'Extended Key Usage'
     ];
@@ -72,6 +71,7 @@ class Certificate extends Bin
     public array $ca = [],
         $cdp = [],
         $extended = [];
+    private string $certData;
 
     public function __construct(string $certInfo = '')
     {
@@ -87,8 +87,8 @@ class Certificate extends Bin
         $certData = explode("\n", $this->certData);
         foreach (self::$setParamsData as $key => $method) {
             foreach ($certData as $string) {
-                if (preg_match('~(.+)?' . $key . '(.+)?~ui', $string) and method_exists($this, $method)) {
-                    $this->$method(trim(preg_replace('~([\w\s\.]+):(.+)~ui', '$2', $string)));
+                if (preg_match('~(.+)?' . $key . '(.+)?~ui', $string, $matches) and method_exists($this, $method)) {
+                    $this->$method(trim(preg_replace('~' . $key . '([\w\s\.]+)?:(.+)~ui', '$2', $string)));
                 }
             }
         }
@@ -127,7 +127,7 @@ class Certificate extends Bin
 
     public function exportToContainet(string $certFile, $numberContainer = null)
     {
-        $exportResult = $this->proc('sudo -u www-data ' . self::bin_patch .
+        $exportResult = $this->proc(' ' . self::bin_patch .
             'certmgr' . ' -export -dest ' . $certFile, $numberContainer);
         $export = str_replace("\n", ';', $exportResult);
         $cert = explode($this->separator,
@@ -142,8 +142,8 @@ class Certificate extends Bin
 
     public function viewInStore(string $sn, string $store = self::store)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' .
-            ' -list -store ' . $store . ' -dn SN=' . $sn;
+        $command = ' ' . self::bin_patch . 'certmgr' .
+            ' -list -store ' . $store . " -dn '" . $sn . "'";
         $data = $this->command($command);
         $count = count($data[0]);
         unset($data[0][$count], $data[0][$count - 1], $data[0][$count - 2], $data[0][$count - 3]);
@@ -159,7 +159,7 @@ class Certificate extends Bin
      */
     public function delete($sn, string $store = self::store)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' .
+        $command = ' ' . self::bin_patch . 'certmgr' .
             ' -delete -store ' . $store . ' -dn SN=' . $sn;
         $this->command($command);
         return $this->result(true, $command);
@@ -173,7 +173,7 @@ class Certificate extends Bin
      */
     public function addCert(string $certPatch, string $store = self::store)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' .
+        $command = ' ' . self::bin_patch . 'certmgr' .
             ' -inst -store ' . $store . ' --file=' . $certPatch;
         $this->command($command);
         return $this->result(true, $command);
@@ -188,7 +188,7 @@ class Certificate extends Bin
      */
     public function export(string $certFile, string $cn, string $store = self::store)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' .
+        $command = ' ' . self::bin_patch . 'certmgr' .
             ' -export -cert -store ' . $store . ' -dest ' . $certFile .
             ' -dn CN=' . $cn;
         $this->command($command);
@@ -203,7 +203,7 @@ class Certificate extends Bin
      */
     public function verify(string $certFile)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' .
+        $command = ' ' . self::bin_patch . 'cryptcp' .
             ' -verify -errchain -f ' . $certFile;
         $this->command($command);
         return $this->result(true, $command);
@@ -217,8 +217,8 @@ class Certificate extends Bin
      */
     public function associate(string $cert, Container $container, $pin = false)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch .
-            "certmgr --inst -file '" . $cert . "' -cont '" .
+        $command = ' ' . self::bin_patch .
+            "certmgr -inst -store uMy -file '" . $cert . "' -cont '" .
             $container->containerName . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
@@ -230,6 +230,7 @@ class Certificate extends Bin
         $this->installRootCerts($certInf->ca);
         #$this->installRootCerts($certInf->cdp);
         $certInf->container = $container;
+        $allContainersCertInstalCommand = ' ' . self::bin_patch . 'csptestf -absorb -certs';
         return $certInf;
     }
 
@@ -248,10 +249,10 @@ class Certificate extends Bin
         $newName = preg_replace('~^(.+)\/([\w\d-]+)\.(\w{3,5})$~ui', '$2.$3', $url);
         $newFile = ROOT . 'private' . SEP . 'certificates' . SEP . 'root' . SEP . $newName;
         $dir = dirname($newFile);
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
-        if (!file_exists($newFile)) {
+        if ( ! file_exists($newFile)) {
             $get = "cd " . $dir . " && wget " . $url;
             exec($get);
             $this->install($newFile);
@@ -265,7 +266,7 @@ class Certificate extends Bin
      */
     public function install($cert)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch .
+        $command = ' ' . self::bin_patch .
             "certmgr --inst -file '" . $cert;
         $this->command($command);
         return $this->result(true, $command);
@@ -274,7 +275,8 @@ class Certificate extends Bin
     private function setProvider($data)
     {
         $this->provider = new Provider();
-        $this->provider->type = preg_replace('~(\d+)~ui', '$1', $data[2]);
+        $this->provider->type[] = preg_replace('~(\d+)~ui', '$1', $data[1]);
+        $this->provider->type[] = preg_replace('~(\d+)~ui', '$1', $data[2]);
         $this->provider->flag = trim($data[3]);
     }
 
@@ -312,7 +314,8 @@ class Certificate extends Bin
 
     private function setSubject($data)
     {
-        $this->subject = new Subject($data);
+        $result = new Subject($data);
+        $this->subject = $result;
     }
 
     private function setValidBefore($data)
@@ -362,6 +365,39 @@ class Certificate extends Bin
                 $this->extended[] = trim($value);
             }
         }
+    }
+
+    /**
+     * @param string $pfxFile
+     * @param string $cert
+     * @param string|null $pin
+     * @return Certificate|null
+     */
+    public static function setPfxContainer(string $pfxFile, string $cert, ?string $pin = null): ?self
+    {
+        $certInfo = false;
+        exec(self::bin_patch.'certmgr -list -f "'.$cert.'"', $output, $resultCode);
+        if(!$resultCode){
+            $certInfo = (Certificates::parseCerts(implode("\n", $output)))[0];
+            unset($output);
+            $command = ' ' . self::bin_patch .'certmgr -install -pfx -file "'.$pfxFile.'"';
+            if($pin){
+                $command .= ' -pin '.$pin;
+            }
+            $command .= ' -silent';
+            exec($command, $output, $resultCode);
+        }
+        if(!$resultCode && $certInfo){
+            unset($output);
+            $command = self::bin_patch.'certmgr -list -chain -thumbprint '.$certInfo->sha1;
+            exec($command, $output, $resultCode);
+            $certPfx = (Certificates::parseCerts(implode("\n", $output)))[0];
+            $certPfx->subject = $certInfo->subject;
+            $certPfx->issuer = $certInfo->issuer;
+            dd($output);
+            return $certPfx;
+        }
+        return null;
     }
 
 }

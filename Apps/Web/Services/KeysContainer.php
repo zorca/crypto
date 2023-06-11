@@ -2,13 +2,12 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\AbstractClasses\AbstractService;
 use Apps\Services\CryptoPro\Container;
-use Apps\Services\CryptoPro\Info;
 use ZipArchive;
 
 /**
@@ -20,7 +19,7 @@ use ZipArchive;
  * @copyright 2022 разработчик Зорин Алексей Евгеньевич. Все права защищены.
  * Запрещено для комерческого использования без соглосования с автором проекта
  */
-class KeysContainer extends AbstractService
+final class KeysContainer extends AbstractService
 {
 
     private static $self;
@@ -28,7 +27,7 @@ class KeysContainer extends AbstractService
 
     public static function instance(): self
     {
-        if (!self::$self) {
+        if ( ! self::$self) {
             self::$self = new self();
         }
         return self::$self;
@@ -44,34 +43,55 @@ class KeysContainer extends AbstractService
         $archive = $this->files->container;
         $zip = new ZipArchive;
         $dir = Container::getKeyRepo();
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         if (isset($archive->tmp_name) and $archive->tmp_name and $zip->open($archive->tmp_name) === true) {
             $zip->extractTo($dir);
             $zip->extractTo(dirname($dir));
-            for ($i = 0; $i < $zip->numFiles; $i++) {
+            for ($i = 0; $i < $zip->numFiles; $i ++) {
                 $entity = $zip->getNameIndex($i);
                 $file = $dir . SEP . $entity;
-                if (is_dir($file)) {
-                    $containerName = trim(trim($entity, SEP), '.000');
-                    $this->container = $this->getContainerInfo($containerName);
-                }
+
             }
             $zip->close();
-            return $this->container;
+            if (is_dir($dir)) {
+                $containerName = preg_replace('~(\w+)/(.+)~ui', '$1', $entity);
+                $this->container = $this->getContainerInfo($containerName);
+            }
         }
+        return $this->container;
     }
 
     private function getContainerInfo($containerName)
     {
-        $containersData = new Info();
+        $containersData = new \Apps\Services\CryptoPro\Info();
         $containers = $containersData->viewContainers();
         foreach ($containers as $container) {
             if (preg_match('~(.+)?' . $containerName . '(.+)?~ui', $container->containerName)) {
                 return $container;
             }
         }
+        return $container;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPfx():?string
+    {
+        $container = $this->files->container;
+        if ($container) {
+            $certFile = ROOT . 'private' . SEP . 'containers'.SEP.'pfx' . SEP . $container->name;
+            $dir = dirname($certFile);
+            if (!is_dir($dir) && !mkdir($dir, 0777, true) && !is_dir($dir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
+            }
+            if (move_uploaded_file($container->tmp_name, $certFile)) {
+                return $certFile;
+            }
+        }
+        return null;
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace Apps\Core\AbstractClasses;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -47,7 +47,7 @@ abstract class AbstractService extends Container
     public static function instance()
     {
         $className = get_called_class();
-        if (!isset(self::$obj[$className])) {
+        if ( ! isset(self::$obj[$className])) {
             self::$obj[$className] = new $className();
         }
         return self::$obj[$className];
@@ -55,7 +55,7 @@ abstract class AbstractService extends Container
 
     public function phoneFormat(string $phone = '')
     {
-        if (!empty(trim($phone))) {
+        if ( ! empty(trim($phone))) {
             $phone = preg_replace('~([^\d])~ui', '', $phone);
         }
         return $phone;
@@ -67,8 +67,8 @@ abstract class AbstractService extends Container
         $array = str_split("QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890");
         $str = '';
         for ($i = 0;
-             $i < $lenght;
-             $i++) {
+            $i < $lenght;
+            $i ++) {
             $str .= $array[array_rand($array)];
         }
         return $str;

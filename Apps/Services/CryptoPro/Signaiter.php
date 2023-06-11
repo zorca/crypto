@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -24,11 +24,11 @@ class Signaiter extends Bin
     {
         if (file_exists($file)) {
             $ext = 'sig';
-            $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' . ' -sign' .
+            $command = ' ' . self::bin_patch . 'cryptcp' . ' -sign' .
                 $this->getComandString('fullInfo', $user) . ' -der ' .
                 " '" . $file . "' '" . $file . "." . $ext . "'";
             $this->proc($command);
-            if (!$this->error[$command] and is_file($file . '.' . $ext)) {
+            if ( ! $this->error[$command] and is_file($file . '.' . $ext)) {
                 return ['file' => $file, 'sign' => $file . '.' . $ext];
             }
         }
@@ -57,7 +57,7 @@ class Signaiter extends Bin
 
     public function verify(string $file)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' . " -verify '" . $file . "'";
+        $command = ' ' . self::bin_patch . 'cryptcp' . " -verify '" . $file . "'";
         $this->command($command);
         return $this->result(true, $command);
     }
@@ -65,9 +65,9 @@ class Signaiter extends Bin
     public function extractFile(string $signFile)
     {
         $newFile = str_replace(['.sig', '.msg'], '', $signFile);
-        $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' . " -verify '" . $signFile . "' '" . $newFile . "'";
+        $command = ' ' . self::bin_patch . 'cryptcp' . " -verify '" . $signFile . "' '" . $newFile . "'";
         $this->command($command);
-        if (!$this->error[$command] and is_file($newFile)) {
+        if ( ! $this->error[$command] and is_file($newFile)) {
             return ['file' => $newFile, 'sign' => $signFile];
         }
     }
@@ -75,9 +75,9 @@ class Signaiter extends Bin
     public function extractMessage(string $signFile, Users $user)
     {
         $newFile = $signFile . '.msg';
-        $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' . " -verify -thumbprint " . $user->thumbprint . " '" . $signFile . "' '" . $newFile . "'";
+        $command = ' ' . self::bin_patch . 'cryptcp' . " -verify -thumbprint " . $user->thumbprint . " '" . $signFile . "' '" . $newFile . "'";
         $this->command($command);
-        if (!$this->error[$command] and is_file($newFile)) {
+        if ( ! $this->error[$command] and is_file($newFile)) {
             return ['msg' => $newFile, 'crypt' => $signFile];
         }
     }
@@ -90,10 +90,10 @@ class Signaiter extends Bin
         } else {
             $format = '';
         }
-        $command = 'sudo -u www-data ' . self::bin_patch . 'cryptcp' . " -sign -thumbprint " . $user->thumbprint . " " .
+        $command = ' ' . self::bin_patch . 'cryptcp' . " -sign -thumbprint " . $user->thumbprint . " " .
             " '" . $fileMessage . "' '" . $newFile . "'";
         $this->proc($command);
-        if (!$this->error[$command] and is_file($newFile)) {
+        if ( ! $this->error[$command] and is_file($newFile)) {
             return ['msg' => $fileMessage, 'sign' => $newFile];
         }
     }

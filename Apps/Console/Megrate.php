@@ -2,7 +2,7 @@
 
 namespace Apps\Console;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -83,12 +83,12 @@ class Megrate
             $columnsInDb[] = $fild['COLUMN_NAME'];
         }
         foreach ($this->class->getFilds() as $key => $newFild) {
-            if (!in_array($newFild, $columnsInDb)) {
+            if ( ! in_array($newFild, $columnsInDb)) {
                 $this->addFild($newFild);
             }
         }
         foreach ($columnsInDb as $key => $fild) {
-            if (!in_array($fild, $this->class->getFilds())) {
+            if ( ! in_array($fild, $this->class->getFilds())) {
                 $this->dropColumn($fild);
                 unset($columnsInDb[$key]);
             }
@@ -135,7 +135,7 @@ class Megrate
     {
         if (isset($structure['lenght'])) {
             return '(' . $structure['lenght'] . ')';
-        } elseif (!isset($structure['lenght']) and isset($structure['type']) and in_array($structure['type'], self::$ignoreTypes)) {
+        } elseif ( ! isset($structure['lenght']) and isset($structure['type']) and in_array($structure['type'], self::$ignoreTypes)) {
             return '';
         } else {
             return '(250)';
@@ -199,7 +199,7 @@ class Megrate
 
     private function setColumnComment($structure)
     {
-        if (isset($structure['comment']) and !empty($structure['comment'])) {
+        if (isset($structure['comment']) and ! empty($structure['comment'])) {
             return " COMMENT '" . trim($structure['comment']) . "'";
         }
         return false;
@@ -310,8 +310,8 @@ class Megrate
         $tabs = "\t";
         $lenght = ceil(strlen($message) / 8);
         for ($i = 0;
-             $i < $lenght;
-             $i++) {
+            $i < $lenght;
+            $i ++) {
             $tabs .= "\t";
         }
         return $tabs;

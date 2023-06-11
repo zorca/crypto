@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -15,14 +15,14 @@ class License extends Bin
 
     public function set(string $license)
     {
-        $setUserLicense = 'sudo -u www-data ' . self::$sbin_patch . 'cpconfig -license -setlocal ' . mb_strtoupper(trim($license));
+        $setUserLicense = ' ' . self::$sbin_patch . 'cpconfig -license -setlocal ' . mb_strtoupper(trim($license));
         $this->command($setUserLicense);
         return $this->result($this->view());
     }
 
     public function view()
     {
-        $command = 'sudo -u www-data ' . self::$sbin_patch . 'cpconfig -license -view';
+        $command = ' ' . self::$sbin_patch . 'cpconfig -license -view';
         $data = $this->command($command);
         return $this->result($this->parseLicinseInfo($data[0]));
     }

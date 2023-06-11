@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Request;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -36,7 +36,7 @@ class Put
 
     private function set($name, $value, $class)
     {
-        if (!is_object($value)) {
+        if ( ! is_object($value)) {
             $class->$name = $value;
         } else {
             $newClass = new PhpInput();

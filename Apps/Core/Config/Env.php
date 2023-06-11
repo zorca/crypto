@@ -23,7 +23,7 @@ class Env
 
     public static function instance(): self
     {
-        if (!self::$_instance) {
+        if ( ! self::$_instance) {
             self::$_instance = new self();
         }
         return self::$_instance;
@@ -41,7 +41,7 @@ class Env
             $commentPattern . '?$~uim';
         preg_match_all($pattern, $this->getEnvContent(), $data);
         if (isset($data['keys']) and isset($data['values'])) {
-            for ($i = 0; $i < count($data['keys']); $i++) {
+            for ($i = 0; $i < count($data['keys']); $i ++) {
                 $key = $data['keys'][$i];
                 $value = $data['values'][$i];
                 $this->$key = $value;

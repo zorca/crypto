@@ -33,7 +33,7 @@ class CocurSlugifyExtension extends Extension
     /**
      * {@inheritDoc}
      *
-     * @param mixed[]          $configs
+     * @param mixed[] $configs
      * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container): void

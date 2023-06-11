@@ -2,12 +2,11 @@
 
 namespace Apps\Services\Scorings\Xml;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
-use Apps\Core\Config\Config;
-use XMLWriter;
+use \XMLWriter;
 
 /**
  * Класс Generate
@@ -26,25 +25,15 @@ abstract class Generate
 
     public function __construct()
     {
-        $this->config = (new Config())->get('equifax');
+        $this->config = (new \Apps\Core\Config\Config())->get('equifax');
         $this->file = ROOT . 'private' . SEP . 'xml' . SEP .
             'scorings' . SEP . date('d.m.Y') . SEP . time() . rand() . '.xml';
         $dir = dirname($this->file);
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         $this->obj = new XMLWriter();
         $this->obj->openUri($this->file);
-    }
-
-    /**
-     * Получить путь к файлу документа
-     * @return string
-     */
-    protected function get(): string
-    {
-        $this->obj->endDocument();
-        return $this->file;
     }
 
     /**
@@ -56,24 +45,6 @@ abstract class Generate
     protected function startDocument(string $version = '1.0', string $encoding = 'utf-8'): self
     {
         $this->obj->startDocument($version, $encoding);
-        return $this;
-    }
-
-    /**
-     * Добавить элемент с содержанием
-     * @param string $name Наименование элемента
-     * @param string $content Содержание элемента
-     * @param array $attribites Атрибуты элемента
-     * @param string|null $comment Коментарий элемента
-     * @return self
-     */
-    protected function addElement(string $name, ?string $content = null, array $attribites = [], ?string $comment = null): self
-    {
-        if ($name and $content) {
-            $this->startElement($name, $attribites, $comment);
-            $this->obj->text($content);
-            $this->closeElement();
-        }
         return $this;
     }
 
@@ -94,25 +65,9 @@ abstract class Generate
         }
         $this->obj->startElement($name);
         if ($attribites) {
-            foreach ($attribites as $key => $value) {
+            foreach ($attribites AS $key => $value) {
                 $this->addAttribute($key, $value);
             }
-        }
-        return $this;
-    }
-
-    /**
-     * Добавить атрибут к элементу
-     * @param string $name Наименование атрибута
-     * @param string $text Значение атрибута
-     * @return self
-     */
-    protected function addAttribute(string $name, string $text): self
-    {
-        if ($name and $text) {
-            $this->obj->startAttribute($name);
-            $this->obj->text($text);
-            $this->obj->endAttribute();
         }
         return $this;
     }
@@ -124,6 +79,50 @@ abstract class Generate
     protected function closeElement(): self
     {
         $this->obj->endElement();
+        return $this;
+    }
+
+    /**
+     * Получить путь к файлу документа
+     * @return string
+     */
+    protected function get(): string
+    {
+        $this->obj->endDocument();
+        return $this->file;
+    }
+
+    /**
+     * Добавить атрибут к элементу
+     * @param string $name Наименование атрибута
+     * @param string $text Значение атрибута
+     * @return self
+     */
+    protected function addAttribute(string $name, string $text): self
+    {
+        if ($name AND $text) {
+            $this->obj->startAttribute($name);
+            $this->obj->text($text);
+            $this->obj->endAttribute();
+        }
+        return $this;
+    }
+
+    /**
+     * Добавить элемент с содержанием
+     * @param string $name Наименование элемента
+     * @param string $content Содержание элемента
+     * @param array $attribites Атрибуты элемента
+     * @param string|null $comment Коментарий элемента
+     * @return self
+     */
+    protected function addElement(string $name, ?string $content = null, array $attribites = [], ?string $comment = null): self
+    {
+        if ($name AND $content) {
+            $this->startElement($name, $attribites, $comment);
+            $this->obj->text($content);
+            $this->closeElement();
+        }
         return $this;
     }
 

@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -20,7 +20,7 @@ class Certificates extends Bin
 
     public function getList()
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' . ' -list';
+        $command = ' ' . self::bin_patch . 'certmgr' . ' -list';
         $data = $this->command($command, 'certmgr');
         $certsInfo = $data[0];
         $countElements = count($certsInfo);
@@ -50,17 +50,17 @@ class Certificates extends Bin
     {
         $patch = ROOT . 'certificates' . SEP;
         $filePatch = $patch . $store . '.p7b';
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' . ' -export -cert -store ' . $store . ' -all -dest ' . $filePatch;
-        if (!is_dir($patch)) {
+        $command = ' ' . self::bin_patch . 'certmgr' . ' -export -cert -store ' . $store . ' -all -dest ' . $filePatch;
+        if ( ! is_dir($patch)) {
             mkdir($patch, 0777, true);
         }
-        if (!file_exists($filePatch)) {
+        if ( ! file_exists($filePatch)) {
             $result = $this->command($command);
         } else {
             $filePatch = $patch . time() . rand() . '.p7b';
             $result = $this->command($command);
         }
-        if (!$result[1]) {
+        if ( ! $result[1]) {
             return $filePatch;
         }
         return false;
@@ -73,9 +73,9 @@ class Certificates extends Bin
         } elseif (mb_strtolower($store) === 'root') {
             $storeCommand = '-store root';
         }
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' . self::$env . ' -inst -all ' . $storeCommand . ' -file ' . $certificate;
+        $command = ' ' . self::bin_patch . 'certmgr' . self::$env . ' -inst -all ' . $storeCommand . ' -file ' . $certificate;
         $result = $this->command($command);
-        if (!$result[1]) {
+        if ( ! $result[1]) {
             return $this->getCertsList($store);
         }
         return false;
@@ -83,7 +83,7 @@ class Certificates extends Bin
 
     public function getCertsList(string $store = self::store)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'certmgr' . ' -list -store ' . $store;
+        $command = ' ' . self::bin_patch . 'certmgr' . ' -list -store ' . $store;
         $data = $this->command($command);
         $count = count($data[0]);
         unset($data[0][$count - 1], $data[0][$count - 2], $data[0][$count - 3], $data[0][0], $data[0][1], $data[0][2]);

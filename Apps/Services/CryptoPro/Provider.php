@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

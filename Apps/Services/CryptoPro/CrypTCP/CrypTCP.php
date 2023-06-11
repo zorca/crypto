@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro\CrypTCP;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -51,14 +51,14 @@ class CrypTCP extends Bin
         $f = $this->getFormat($format);
         $ext = 'p7e';
         $newFile = $this->file . '.' . $ext;
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp -encr " .
+        $command = ' ' . self::bin_patch . "cryptcp -encr " .
             $f . " -thumbprint " . $this->user->thumbprint . " '" .
             $this->file . "' '" . $newFile . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->proc($command, 'Y');
-        if (!$this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
             $this->crypt = $newFile;
         }
         return $this;
@@ -68,14 +68,14 @@ class CrypTCP extends Bin
     {
         $this->crypt = $this->file;
         $newFile = preg_replace('~(.+)\.(\w+)$~ui', '$1', $this->file);
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" .
+        $command = ' ' . self::bin_patch . "cryptcp" .
             " -decr -thumbprint " . $this->user->thumbprint . " '" . $this->file . "' '" . $newFile . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->command($command);
         $this->proc($command, 'Y');
-        if (!$this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
             $this->file = $newFile;
         }
         return $this;
@@ -84,9 +84,9 @@ class CrypTCP extends Bin
     public function createHash()
     {
         $newFile = $this->file . '.hsh';
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp -hash -provtype 75 -dir '" . dirname($this->file) . "' '" . $this->file . "'";
+        $command = ' ' . self::bin_patch . "cryptcp -hash -provtype 75 -dir '" . dirname($this->file) . "' '" . $this->file . "'";
         $this->command($command);
-        if (!$this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
             $this->hash = $newFile;
         }
         return $this;
@@ -95,14 +95,14 @@ class CrypTCP extends Bin
     public function createSingf($pin = false)
     {
         $newFile = $this->file . '.sgn';
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" . self::ext .
+        $command = ' ' . self::bin_patch . "cryptcp" . self::ext .
             " -signf -dir '" . dirname($this->file) .
             "' -thumbprint " . $this->user->thumbprint . " '" . $this->file . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->proc($command, 'Y');
-        if (!$this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
             $this->sgn = $newFile;
         }
         return $this;
@@ -111,14 +111,14 @@ class CrypTCP extends Bin
     public function createSing($pin = false)
     {
         $newFile = $this->file . '.sig';
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" . self::ext .
+        $command = ' ' . self::bin_patch . "cryptcp" . self::ext .
             " -sign -dir '" . dirname($this->file) .
             "' -thumbprint " . $this->user->thumbprint . " '" . $this->file . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->proc($command, 'Y');
-        if (!$this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($newFile) and file_exists($this->file)) {
             $this->sig = $newFile;
             $this->msg = $newFile;
         }
@@ -127,14 +127,14 @@ class CrypTCP extends Bin
 
     public function addSignf($pin = false)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" . self::ext .
+        $command = ' ' . self::bin_patch . "cryptcp" . self::ext .
             " -addsignf -dir '" . dirname($this->file) .
             "' -thumbprint " . $this->user->thumbprint . " '" . $this->file . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->proc($command, 'Y');
-        if (!$this->error[$command] and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($this->file)) {
             $this->addSignf = true;
         }
         return $this;
@@ -142,14 +142,14 @@ class CrypTCP extends Bin
 
     public function addSign($pin = false)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" . self::ext .
+        $command = ' ' . self::bin_patch . "cryptcp" . self::ext .
             " -addsign -m -dir '" . dirname($this->file) .
             "' -thumbprint " . $this->user->thumbprint . " '" . $this->file . "'";
         if ($pin) {
             $command .= " -pin " . $pin;
         }
         $this->command($command);
-        if (!$this->error[$command] and file_exists($this->file)) {
+        if ( ! $this->error[$command] and file_exists($this->file)) {
             $this->addSign = true;
         }
         return $this;
@@ -165,7 +165,7 @@ class CrypTCP extends Bin
     {
         $container = $this->getRandContainer($this->user->Containers);
         $containerName = $container->patch;
-        $command = 'sudo -u www-data ' . self::bin_patch . "cryptcp" .
+        $command = ' ' . self::bin_patch . "cryptcp" .
             ' -creatrqst ' . $this->file .
             ' -both -km -cont \'' . $containerName .
             '\' -nokeygen -dn ' . $dn;
@@ -184,15 +184,10 @@ class CrypTCP extends Bin
         return $containers[$containerIndex];
     }
 
-    public function __destruct()
-    {
-
-    }
-
     private function contNameGenerate()
     {
         $name = '';
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < 8; $i ++) {
             $name .= $this->getRand();
         }
         $name .= '.000';
@@ -202,6 +197,11 @@ class CrypTCP extends Bin
     function getRand()
     {
         return self::$arrayInput[array_rand(self::$arrayInput)];
+    }
+
+    public function __destruct()
+    {
+
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace Apps\Services\Scorings\Library;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -19,6 +19,12 @@ class CodesOfCountriesAccordingToOKSM
 {
 
     use Books;
+
+    /**
+     * Значение по умолчанию
+     * @var type
+     */
+    private static int $default = 643;
 
     /**
      * Коллекция возможных значений
@@ -280,10 +286,5 @@ class CodesOfCountriesAccordingToOKSM
         'ЯПОНИЯ' => 392,
         'Иная страна' => 999
     ];
-    /**
-     * Значение по умолчанию
-     * @var type
-     */
-    private static int $default = 643;
 
 }

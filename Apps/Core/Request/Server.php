@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Request;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

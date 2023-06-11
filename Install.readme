@@ -1,0 +1,123 @@
+Для корректной работы сервиса требуется:
+1) apache2.4,
+2) php7.4-cgi, php7.4-cli
+3) mysql 8.0 (postresql 13) или более новой версии
+4) crypto-pro 5.0 или более новой версии
+5) ОС *unix подобная основаная на debian (Ubuntu 20.04, Linux Mint, Debian 10 и их производные)
+
+                    Установка apache 2.4 + php8
+sudo apt install apache php7.4 php7.4-cli php7.4-cgi php7.4-pdo php7.4-xml php7.4-zip
+
+                    Установка mysql
+sudo apt install mysql-server mysql-client
+Настройка сервера баз данных зависит от версии mysql и версии ОС подробные инструкции по настройке сервера баз данных в больших количествах размещены в глобальной сети интернет
+
+                    Установка crypto-pro
+Для установки криптографии необходимо скачать архив с сайта https://cryptopro.ru предварительно зарегистрировавшись на нем. (Регистрация и сам пакет криптографии бесплатны)
+После успешной регисрации нужно перейти по ссылке https://cryptopro.ru/products/csp/downloads затем выбрать версию для вашего процессора и ОС (ubuntu 20.04 https://cryptopro.ru/system/files/private/csp/50/12600/linux-amd64_deb.tgz)
+Далее :
+1) Разархивировать пакет
+2) Закачать разархивированую папку на сервер
+3) Перейти в данный каталог
+4) Запустить файл install.sh от имени сепер пользователя (например sudo /var/www/linux-amd64_deb/install.sh)
+
+После установки необходимо ввести лицензионный ключ Крипто-про в противном случае веб-сервис перестанет работать четез 3 месяца так как истечет триал
+
+                    Установка дополнительного ПО
+sudo apt install unzip
+
+
+Если все сделано и настроено правильно то, далее следует настроить виртуальный хост веб сервера apache2 для работы данного веб-сервиса
+Пример файла
+
+<VirtualHost *:80>
+    ServerAdmin admin@crypto.ruqi.ru
+    ServerName crypto.ruqi.ru
+    ServerAlias www.crypto.ruqi.ru
+    DocumentRoot /var/www/crypto.ruqi.ru/html
+    ErrorLog /var/www/crypto.ruqi.ru/logs/apache_error.log
+    CustomLog /var/www/crypto.ruqi.ru/logs/apache_access.log combined
+	<Directory /var/www/crypto.ruqi.ru/html>
+        Options Includes Indexes FollowSymLinks
+        AllowOverride All
+    </Directory>
+</VirtualHost>
+
+
+Далее необходимо создать каталоги веб-сервиса и включить модуль rewrite веб-сервера apache2
+sudo a2enmod rewrite
+
+sudo mkdir /var/www/crypto.ruqi.ru/
+sudo mkdir /var/www/crypto.ruqi.ru/logs
+
+В каталоге install данного проекта есть zip архив с исходными кодами веб-сервиса криптографии, его нужно распаковать в любой доступный каталог
+
+Например
+unzip '/var/www/crypto-api/install/api crypto.zip' -d /var/www/crypto-api
+
+после чего создать символическую ссылку для каталога DocumentRoot веб-сервера apache2
+
+Например
+sudo ln -s /var/www/crypto-api/public /var/www/crypto.ruqi.ru/html
+
+Затем открыть файл /var/www/crypto-api/config/mysql.json и прописать в нем параметры подключения к базе данных
+
+{
+    "db_type": "mysql",
+    "db_name": "<Наименование базы данных>",
+    "dsn": "mysql:host=localhost;port=3306;dbname=<Наименование базы данных>",
+    "username": "<Имя пользователя базы данных>",
+    "password": "<Пароль пользователя базы данных>",
+    "options": {
+        "PDO::MYSQL_ATTR_INIT_COMMAND": "SET NAMES UTF8",
+        "PDO::ATTR_ERRMODE": "PDO::ERRMODE_EXCEPTION",
+        "PDO::MYSQL_ATTR_USE_BUFFERED_QUERY": true,
+        "PDO::MYSQL_ATTR_COMPRESS ": 50,
+        "PDO::MYSQL_ATTR_USE_BUFFERED_QUERY": true
+    }
+}
+
+Перейти в корень проекта веб-сервиса
+
+cd /var/www/crypto-api
+
+и выполнить следующие команды
+
+sudo chmod 777 -R /var/www/crypto-api
+sudo usermod -a -G sudo, root www-data
+php7.4 composer.phar update
+php7.4 master megrate
+
+После данных операций перезапускаем машину, сервис готов к использованию.
+
+
+
+
+Для переноса или резервного копирования необходимо так же скопировать всю информацию о ключах и сертификатах.
+
+Вся ключи и сертификаты хранятся в папке /var/opt/cprocsp её необходимо копировать от имени root или sudo пользователя
+
+Можно так же заархивировать командой sudo tar -cf archive-name.tar /var/opt/cprocsp/* ,
+но перед этим необходимо перейти в каталог (напмер /var/www), в котором нужно создать архив базы криптопро командой
+cd /var/www
+Для распаковки необходимо перейти в каталог командой cd /var/opt/cprocsp , а затем распаковать архив
+командой sudo tar -xvf archive.tar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

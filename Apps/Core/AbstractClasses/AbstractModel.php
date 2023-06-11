@@ -2,7 +2,7 @@
 
 namespace Apps\Core\AbstractClasses;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -11,7 +11,6 @@ use Apps\Core\DataBase\DataBase;
 use Apps\Core\Interfaces\ModelInteface;
 use Exception;
 use PDO;
-use PDOStatement;
 use stdClass;
 
 /**
@@ -38,18 +37,18 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
     public function __construct()
     {
         self::$settings = new Config('mysql');
-        $this->DB = new DataBase(self::$settings);
+        $this->DB = new \Apps\Core\DataBase\DataBase(self::$settings);
     }
 
     /**
      * Обработка вызова не существующего статического метода
      * @param string $name имя вызываемого метода
      * @param array $params параметры вызываемого метода
-     * @return
+     * @return mixed|stdClass
      */
     public static function __callStatic(string $name, array $params)
     {
-        $obj = new self();
+        $obj = new static();
         if (method_exists($obj, $name)) {
             return call_user_func_array([$obj, $name], $params);
         }
@@ -114,7 +113,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
         $sql = "SELECT * FROM `" . $this->getTableName() . "`";
         $endWhere = '';
         $order = $this->getOrderSql();
-        for ($i = 0; $i < count($requestFilds); $i++) {
+        for ($i = 0, $iMax = count($requestFilds); $i < $iMax; $i ++ ) {
             if (isset($params[$i]) and isset($requestFilds[$i]) and (is_string($params[$i]) or is_int($params[$i]) or is_array($params[$i]))) {
                 $endWhere .= $this->getCondition($params, $requestFilds, $i);
             }
@@ -137,7 +136,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
         $structure = $this->getTableStructure();
         if (isset($structure['tablePrefix']) and isset($structure['tableName'])) {
             return mb_strtolower($structure['tablePrefix'] . $structure['tableName']);
-        } elseif (!isset($structure['tablePrefix']) and isset($structure['tableName'])) {
+        } elseif ( ! isset($structure['tablePrefix']) and isset($structure['tableName'])) {
             return mb_strtolower($structure['tableName']);
         }
         throw new Exception('Не укзано название таблицы в моделе ' . $this->className);
@@ -147,13 +146,13 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
     {
         $count = count($order);
         $sql = ' ORDER BY ' . $this->getFildName('date_create') . ' ASC';
-        if (!$order or $count === 0) {
+        if ( ! $order or $count === 0) {
             return $sql;
         }
         $sql = ' ORDER BY ';
         $keys = array_keys($order);
         $values = array_values($order);
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i ++ ) {
             if (is_string($values[$i]) and mb_strtoupper($values[$i]) !== 'ASC') {
                 $sort = 'DESC';
             } else {
@@ -189,7 +188,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
                 $condition .= ", ";
             }
             $condition .= $this->setBindParams($param);
-            $step++;
+            $step ++;
         }
         $condition .= ") ";
         if ($i === 0) {
@@ -214,7 +213,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
      */
     public function getBindName(string $name): string
     {
-        return ':' . preg_replace('~([^\w\d]+)~ui', '_', $name) . '_' . count($this->bindParam);
+        return ':' . preg_replace('~(\W+)~u', '_', $name) . '_' . count($this->bindParam);
     }
 
     private function toStringCondition($i, $requestFilds, $condition, $param)
@@ -256,16 +255,11 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
         return $sql;
     }
 
-    public function query($sql, $binds = []): PDOStatement
-    {
-        return $this->DB->query($sql, $binds);
-    }
-
     public function getFildStructure(string $fildName): array
     {
         $filds = $this->getTableStructure()['filds'];
         $keys = array_keys($filds);
-        for ($i = 0; $i < count($filds); $i++) {
+        for ($i = 0, $iMax = count($filds); $i < $iMax; $i ++ ) {
             if ($this->getFildName($fildName) === $keys[$i]) {
                 if (isset($keys[$i - 1])) {
                     $filds[$keys[$i]]['after'] = $keys[$i - 1];
@@ -308,11 +302,12 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
     /**
      * Сохранить или обновить запись в базе данных
      * @return ModelInteface|false
+     * @throws Exception
      */
     public function save()
     {
         $check = $this->check();
-        if (!$check) {
+        if ( ! $check) {
             return $this->create();
         }
         return $this->update($check);
@@ -348,10 +343,10 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
     public function getUid(): string
     {
         $uidName = $this->getFildName('uid');
-        if (!isset($this->$uidName)) {
+        if ( ! isset($this->$uidName)) {
             $data = new stdClass();
             foreach ($this as $key => $value) {
-                if (!in_array($key, $this->getIgnoreFilds())
+                if ( ! in_array($key, $this->getIgnoreFilds())
                     and in_array($key, $this->getFilds())) {
                     $data->$key = $value;
                 }
@@ -434,13 +429,18 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
         return $sql;
     }
 
-    public function getById(int $userId)
+    public function getById($userId)
     {
         $this->bindParam = [];
         $sql = "SELECT * FROM `" . self::$settings->db_name . "`.`" . $this->getTableName() .
             "` WHERE `id` = " . $this->setBindParams($userId);
         $result = $this->query($sql, $this->bindParam)->fetchObject($this->className);
         return $result;
+    }
+
+    public function query($sql, $binds = []): \PDOStatement
+    {
+        return $this->DB->query($sql, $binds);
     }
 
     /**
@@ -485,7 +485,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
      */
     public function get(string $name = '')
     {
-        if (!$name) {
+        if ( ! $name) {
             return $this;
         }
         return $this->{$this->getFildName($name)};
@@ -495,7 +495,7 @@ abstract class AbstractModel extends AbstractFactoryModel implements ModelIntefa
     {
         $fildsKeys = array_keys($filds);
         foreach ($this->getFilds() as $fild) {
-            if (!in_array($fild, $fildsKeys)) {
+            if ( ! in_array($fild, $fildsKeys)) {
                 return false;
             }
         }

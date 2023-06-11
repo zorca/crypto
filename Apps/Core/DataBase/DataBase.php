@@ -2,13 +2,12 @@
 
 namespace Apps\Core\DataBase;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\Config\Config;
 use PDO;
-use stdClass;
 
 /**
  * Класс DataBase
@@ -34,7 +33,7 @@ class DataBase
     {
         $this->connectIndex = md5(json_encode($settings));
         $this->settings = $settings;
-        if (!isset(self::$connect[$this->connectIndex])) {
+        if ( ! isset(self::$connect[$this->connectIndex])) {
             self::$connect[$this->connectIndex] = new PDO(
                 $this->settings->dsn,
                 $this->settings->username,
@@ -45,7 +44,7 @@ class DataBase
         }
     }
 
-    private function getOptions(stdClass $options)
+    private function getOptions(\stdClass $options)
     {
         $data = [];
         foreach ($options as $key => $value) {
@@ -85,7 +84,7 @@ class DataBase
     public function query(string $sql, array $bindParams = [], array $prepareOptions = [])
     {
         $queryIndex = md5($sql . json_encode($bindParams));
-        self::$queryCount++;
+        self::$queryCount ++;
         if (self::$queryCount >= 30000) {
             $this->commit();
         }
@@ -96,7 +95,7 @@ class DataBase
 
     private function prepare(string $sql, string $queryIndex, array $prepareOptions = [])
     {
-        if (!isset(self::$stmt[$queryIndex])) {
+        if ( ! isset(self::$stmt[$queryIndex])) {
             self::$stmt[$queryIndex] = self::$connect[$this->connectIndex]->prepare($sql, $prepareOptions);
         }
         return self::$stmt[$queryIndex];

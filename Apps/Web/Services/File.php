@@ -2,15 +2,13 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\AbstractClasses\AbstractService;
-use Apps\Models\Load\Load;
 use Apps\Models\Users\Users;
 use Apps\Services\CryptoPro\CrypTCP\CrypTCP;
-use Apps\Services\CryptoPro\Info;
 use ZipArchive;
 
 /**
@@ -47,7 +45,7 @@ class File extends AbstractService
         $file = $this->files->{$this->name};
         if ($file) {
             $filePatch = ROOT . 'private' . SEP . $this->name . SEP . date('d.m.Y') . SEP . $file->name;
-            if (!is_dir(dirname($filePatch))) {
+            if ( ! is_dir(dirname($filePatch))) {
                 mkdir(dirname($filePatch), 0777, true);
             }
             if (move_uploaded_file($file->tmp_name, $filePatch)) {
@@ -64,7 +62,7 @@ class File extends AbstractService
         $fileName = $this->post->file_name;
         if ($file and $fileName) {
             $filePatch = ROOT . 'private' . SEP . $this->name . SEP . $fileName;
-            if (!is_dir(dirname($filePatch))) {
+            if ( ! is_dir(dirname($filePatch))) {
                 mkdir(dirname($filePatch), 0777, true);
             }
             if (file_put_contents($filePatch, base64_decode($file))) {
@@ -78,11 +76,11 @@ class File extends AbstractService
     public function add($crypt)
     {
         $data = [];
-        $link = strtolower(preg_replace('~^(\w+)(.+)~ui', '$1', $this->server->SERVER_PROTOCOL) . '://' . $this->server->SERVER_NAME . '/');
+        $link = strtolower('https://' . $this->server->SERVER_NAME . '/');
         foreach ($crypt as $key => $value) {
             if ($value !== true and $value) {
                 $alias = $this->generateUniString();
-                $file = new Load();
+                $file = new \Apps\Models\Load\Load();
                 $file->type = $key;
                 $file->file = $value;
                 $file->alias = $alias;
@@ -100,10 +98,10 @@ class File extends AbstractService
     {
         $this->file = $this->dir . date("d.m.Y") . SEP . md5(json_encode($user)) . '.csr';
         $dir = dirname($this->file);
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
-        $user->Containers = (new Info())->viewContainers();
+        $user->Containers = (new \Apps\Services\CryptoPro\Info())->viewContainers();
         $result = (new CrypTCP($this->file, $user))->createCertRequest($dn, $user);
         return $result;
     }

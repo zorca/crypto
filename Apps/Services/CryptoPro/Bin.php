@@ -3,7 +3,6 @@
 namespace Apps\Services\CryptoPro;
 
 use Apps\Core\Config\Config;
-use Apps\Core\Config\Env;
 
 /**
  * Трейт Bin
@@ -18,13 +17,18 @@ abstract class Bin
 {
 
     const tmpDir = TMP . 'crypto-pro' . SEP;
-    const store = 'My';
-    const bin_patch = '/opt/cprocsp/bin/amd64/';
-    const ext = '';
+    const store = 'uMy';
+
     public static $errorFile = self::tmpDir . 'e.txt';
     public static $keys_patch = '/var/opt/cprocsp/keys/';
     public static $env;
+
+    const bin_patch = '/opt/cprocsp/bin/amd64/';
+
     protected static $sbin_patch = '/opt/cprocsp/sbin/amd64/';
+
+    const ext = '';
+
     protected static array $data;
     public string $separator = '--|||--';
     protected $error;
@@ -40,17 +44,17 @@ abstract class Bin
                 self::${$key} = $value;
             }
         }
-        if (!is_dir(self::tmpDir)) {
+        if ( ! is_dir(self::tmpDir)) {
             mkdir(self::tmpDir, 0777, true);
         }
-        self::$env = Env::instance()->load()->toArray();
+        self::$env = \Apps\Core\Config\Env::instance()->load()->toArray();
         file_put_contents(self::$errorFile, '');
     }
 
     public function proc($command, $input = null)
     {
         $pipes = [];
-        $descriptorspec = array(
+        $descriptorspec = array (
             0 => ["pipe", "r+"],
             1 => ["pipe", "w+"],
             2 => ["file", self::$errorFile, "a"]
@@ -86,7 +90,7 @@ abstract class Bin
         }
         $file = ROOT . 'logs' . SEP . date('d.m.Y') . SEP . 'error_crypto.log';
         $dir = dirname($file);
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         file_put_contents($file, $msg, LOCK_EX | FILE_APPEND);
@@ -103,7 +107,7 @@ abstract class Bin
 
     protected function result($data = true, $command = false)
     {
-        if (!isset($this->error[$command]) or !$this->error[$command]) {
+        if ( ! isset($this->error[$command]) or ! $this->error[$command]) {
             return $data;
         }
         return false;

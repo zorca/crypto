@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Display;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -24,13 +24,13 @@ class Display extends Container
 
     public function __set(string $name, $value)
     {
-        if (!isset(self::$vars[$name])) {
+        if ( ! isset(self::$vars[$name])) {
             self::$vars[$name] = $value;
             return true;
         }
         throw new Exception('Имя переменной уже используется!!! ' .
-            'Выберите другое наименование переменной или используйте ' .
-            'метод ' . __CLASS__ . '::set($name, $value)'
+                'Выберите другое наименование переменной или используйте ' .
+                'метод ' . __CLASS__ . '::set($name, $value)'
         );
     }
 
@@ -39,7 +39,7 @@ class Display extends Container
         if (is_string($name)) {
             return $this->$name = $value;
         } elseif (is_array($name) and is_array($value) and count($name) === count($value)) {
-            for ($i = 0; $i < count($name); $i++) {
+            for ($i = 0; $i < count($name); $i ++) {
                 $this->$name[$i] = $value[$i];
             }
             return true;

@@ -2,10 +2,7 @@
 
 namespace Apps\Web\Services;
 
-use Apps\Core\AbstractClasses\AbstractService;
-use Apps\Services\CryptoPro\License;
-
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -18,7 +15,7 @@ if (!defined('ROOT')) {
  * @copyright 2022 разработчик Зорин Алексей Евгеньевич. Все права защищены.
  * Запрещено для комерческого использования без соглосования с автором проекта
  */
-class Main extends AbstractService
+class Main extends \Apps\Core\AbstractClasses\AbstractService
 {
 
     public function getLicense()
@@ -30,7 +27,7 @@ class Main extends AbstractService
 
     public function setLicense(string $license)
     {
-        $newLicense = (new License())->set($license);
+        $newLicense = (new \Apps\Services\CryptoPro\License())->set($license);
         if ($newLicense) {
             unset($newLicense->separator);
             return $newLicense;

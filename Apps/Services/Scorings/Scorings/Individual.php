@@ -2,27 +2,27 @@
 
 namespace Apps\Services\Scorings\Scorings;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
-use Apps\Core\Helpers\Valid;
-use Apps\Core\Request\Put;
-use Apps\Services\Scorings\Helpers\Address;
-use Apps\Services\Scorings\Library\CodesOfCountriesAccordingToOKSM;
-use Apps\Services\Scorings\Library\ConsentExpirationDate;
-use Apps\Services\Scorings\Library\Education;
-use Apps\Services\Scorings\Library\FamilyStatus;
-use Apps\Services\Scorings\Library\GenderOfSubject;
-use Apps\Services\Scorings\Library\GroundsForTheTransferOfConsent;
-use Apps\Services\Scorings\Library\HowToApplyForLoan;
-use Apps\Services\Scorings\Library\InformingAboutAdministrativeResponsibility;
-use Apps\Services\Scorings\Library\OKWCurrencyCodes;
-use Apps\Services\Scorings\Library\PeriodicityOfIncome;
-use Apps\Services\Scorings\Library\PurposesOfRequestAndConsent;
-use Apps\Services\Scorings\Library\TypesOfCredits;
-use Apps\Services\Scorings\Library\TypesOfIdentityDocuments;
-use Apps\Services\Scorings\Xml\Generate;
+use \Apps\Core\Request\Put;
+use \Apps\Services\Scorings\Xml\Generate;
+use \Apps\Services\Scorings\Library\GenderOfSubject;
+use \Apps\Services\Scorings\Library\TypesOfIdentityDocuments;
+use \Apps\Services\Scorings\Library\CodesOfCountriesAccordingToOKSM;
+use \Apps\Services\Scorings\Library\PurposesOfRequestAndConsent;
+use \Apps\Services\Scorings\Library\GroundsForTheTransferOfConsent;
+use \Apps\Services\Scorings\Library\ConsentExpirationDate;
+use \Apps\Services\Scorings\Library\InformingAboutAdministrativeResponsibility;
+use \Apps\Services\Scorings\Library\PeriodicityOfIncome;
+use \Apps\Services\Scorings\Library\HowToApplyForLoan;
+use \Apps\Services\Scorings\Library\TypesOfCredits;
+use \Apps\Services\Scorings\Library\OKWCurrencyCodes;
+use \Apps\Services\Scorings\Library\FamilyStatus;
+use \Apps\Services\Scorings\Library\Education;
+use \Apps\Services\Scorings\Helpers\Address;
+use \Apps\Core\Helpers\Valid;
 
 /**
  * Класс Individual
@@ -44,8 +44,8 @@ class Individual extends Generate
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                 'version' => '4.0',
                 'partnerid' => $this->config->partnerid
-            ]
-        )->startElement('request', ['num' => 1])
+                ]
+            )->startElement('request', ['num' => 1])
             ->startElement('private')
             ->startElement('name')
             ->addElement('last', mb_strtoupper($user->last))

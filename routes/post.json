@@ -26,14 +26,14 @@
     "method": "container",
     "params": []
   },
+  "set/pfx": {
+    "controller": "\\Apps\\Web\\Controllers\\UserController",
+    "method": "PfxInstall",
+    "params": []
+  },
   "set/license": {
     "controller": "\\Apps\\Web\\Controllers\\MainController",
     "method": "setLicense",
-    "params": []
-  },
-  "send/history": {
-    "controller": "\\Apps\\Web\\Controllers\\HistoryController",
-    "method": "send",
     "params": []
   },
   "error/(\\d+)(.+)?": {

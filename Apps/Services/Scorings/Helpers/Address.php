@@ -2,12 +2,12 @@
 
 namespace Apps\Services\Scorings\Helpers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
-use Apps\Services\Scorings\Library\CodesOfCountriesAccordingToOKSM;
-use Apps\Services\Scorings\Library\RegionCodes;
+use \Apps\Services\Scorings\Library\CodesOfCountriesAccordingToOKSM;
+use \Apps\Services\Scorings\Library\RegionCodes;
 
 /**
  * Класс Address

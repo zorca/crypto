@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Apps;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -37,7 +37,7 @@ class Container
 
     public function __set(string $name, $value)
     {
-        if (!isset(self::$data[$name])) {
+        if ( ! isset(self::$data[$name])) {
             self::$data[$name] = $value;
             return self::$data[$name];
         }
@@ -55,7 +55,7 @@ class Container
 
     public function __isset(string $name): bool
     {
-        if (!isset(self::$data[$name])) {
+        if ( ! isset(self::$data[$name])) {
             return false;
         }
         return true;

@@ -1,4 +1,6 @@
 {
-  "keys_patch": "/var/opt/cprocsp/keys/",
-  "sbin_patch": "/opt/cprocsp/sbin/amd64/"
+    "ext": false,
+    "keys_patch": "/var/opt/cprocsp/keys/",
+    "bin_patch": "/opt/cprocsp/bin/amd64/",
+    "sbin_patch": "/opt/cprocsp/sbin/amd64/"
 }

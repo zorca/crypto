@@ -2,7 +2,7 @@
 
 namespace Apps\Services\Scorings\Library;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -18,6 +18,12 @@ class OKWCurrencyCodes
 {
 
     use Books;
+
+    /**
+     * Значение словаря по умолчанию
+     * @var string
+     */
+    private static string $default = 'RUB';
 
     /**
      * Коллекция возможных значений
@@ -1096,18 +1102,13 @@ class OKWCurrencyCodes
             ]
         ]
     ];
-    /**
-     * Значение словаря по умолчанию
-     * @var string
-     */
-    private static string $default = 'RUB';
 
     public static function get($value)
     {
         $getValue = mb_strtolower($value);
         $obj = new self();
         foreach (self::$data as $name => $info) {
-            if ($getValue === mb_strtolower($name) or $getValue === mb_strtolower($info['code'])) {
+            if ($getValue === mb_strtolower($name) OR $getValue === mb_strtolower($info['code'])) {
                 $obj->name = $name;
                 $obj->code = $info['code'];
                 return $obj;
@@ -1121,7 +1122,7 @@ class OKWCurrencyCodes
                 }
             }
         }
-        if (!$obj->code and !$obj->name) {
+        if ( ! $obj->code AND ! $obj->name) {
             return self::get(self::$default);
         }
     }

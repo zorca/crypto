@@ -20,7 +20,7 @@ trait Books
     {
         foreach (self::$data as $key => $value) {
             if (mb_strtolower($str) === mb_strtolower($key)
-                or mb_strtolower($str) === mb_strtolower($value)
+                OR mb_strtolower($str) === mb_strtolower($value)
             ) {
                 $obj = new self();
                 $obj->name = mb_strtolower($str);

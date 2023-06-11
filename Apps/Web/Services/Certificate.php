@@ -2,7 +2,7 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -25,7 +25,7 @@ class Certificate extends AbstractService
 
     public static function instance()
     {
-        if (!self::$self) {
+        if ( ! self::$self) {
             self::$self = new self();
         }
         return self::$self;
@@ -37,7 +37,7 @@ class Certificate extends AbstractService
         if ($certificate) {
             $certFile = ROOT . 'private' . SEP . 'certificates' . SEP . $certificate->name;
             $dir = dirname($certFile);
-            if (!is_dir($dir)) {
+            if ( ! is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
             if (move_uploaded_file($certificate->tmp_name, $certFile)) {

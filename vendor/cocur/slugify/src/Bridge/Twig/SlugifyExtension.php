@@ -58,7 +58,7 @@ class SlugifyExtension extends AbstractExtension
     /**
      * Slugify filter.
      *
-     * @param string      $string
+     * @param string $string
      * @param string|null $separator
      *
      * @return string

@@ -1,9 +1,9 @@
 {
-  "Config": "\\Apps\\Core\\Config\\Config",
-  "Json": "\\Apps\\Core\\Config\\Json",
-  "Server": "\\Apps\\Core\\Request\\Server",
-  "Env": "\\Apps\\Core\\Config\\Env",
-  "View": "\\Apps\\Core\\Display\\Display",
-  "Users": "\\Apps\\Models\\Users\\Users",
-  "Load": "\\Apps\\Models\\Load\\Load"
+    "Config": "\\Apps\\Core\\Config\\Config",
+    "Json": "\\Apps\\Core\\Config\\Json",
+    "Server": "\\Apps\\Core\\Request\\Server",
+    "Env": "\\Apps\\Core\\Config\\Env",
+    "View": "\\Apps\\Core\\Display\\Display",
+    "Users": "\\Apps\\Models\\Users\\Users",
+    "Load": "\\Apps\\Models\\Load\\Load"
 }

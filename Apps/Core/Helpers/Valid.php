@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Helpers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

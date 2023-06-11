@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro\CspTest;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -24,7 +24,7 @@ class CspTest extends Bin
     public function generateKeys(Users $user)
     {
         $contName = $this->getContainerName($user);
-        $command = 'sudo -u www-data ' . self::bin_patch . "csptest -keyset -newkeyset -cont '\\\\.\\HDIMAGE\\" . $contName . "'";
+        $command = ' ' . self::bin_patch . "csptest -keyset -newkeyset -cont '\\\\.\\HDIMAGE\\" . $contName . "'";
         $this->command($command);
         return false;
     }
@@ -33,7 +33,7 @@ class CspTest extends Bin
     {
         $name = '';
         $array = str_split(hash('sha256', json_encode($user)));
-        for ($i = 0; $i < 8; $i++) {
+        for ($i = 0; $i < 8; $i ++) {
             $name .= $array[array_rand($array)];
         }
         $name .= '.000';

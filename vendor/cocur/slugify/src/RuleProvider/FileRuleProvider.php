@@ -40,7 +40,7 @@ class FileRuleProvider implements RuleProviderInterface
      */
     public function getRules($ruleset)
     {
-        $fileName = $this->directoryName.DIRECTORY_SEPARATOR.$ruleset.'.json';
+        $fileName = $this->directoryName . DIRECTORY_SEPARATOR . $ruleset . '.json';
 
         return json_decode(file_get_contents($fileName), true);
     }

@@ -2,11 +2,11 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
-use SimpleXMLElement;
+use \SimpleXMLElement;
 
 /**
  * Класс Scorings
@@ -21,13 +21,13 @@ class Scorings
 
     private static $dir = ROOT . 'private' . SEP . 'xml' . SEP . 'result' . SEP;
 
-    public static function getXml(string $signString, string $tagStart = '<?xml', string $tagEnd = '</bki_response>')
+    public static function getXml(string $signString)
     {
         $validString = str_replace(["\n", "\t"], ' ', $signString);
-        $validXml = stristr(stristr($validString, $tagStart), $tagEnd, true) . $tagEnd;
+        $validXml = stristr(stristr($validString, '<?xml'), '</bki_response>', true) . '</bki_response>';
         if ($validXml) {
             $xmlObj = new SimpleXMLElement($validXml);
-            #self::saveResult($validXml);
+            self::saveResult($validXml);
             return $xmlObj;
         }
         return false;
@@ -45,7 +45,7 @@ class Scorings
     {
         $file = self::$dir . date('d.m.Y') . SEP . time() . rand() . '.xml';
         $dir = dirname($file);
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         file_put_contents($file, $content);

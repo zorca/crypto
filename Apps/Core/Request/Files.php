@@ -2,9 +2,7 @@
 
 namespace Apps\Core\Request;
 
-use stdClass;
-
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -31,7 +29,7 @@ class Files
 
     private function getValue(array $value)
     {
-        $data = new stdClass();
+        $data = new \stdClass();
         foreach ($value as $key => $param) {
             $data->$key = trim($param);
         }

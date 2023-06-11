@@ -2,7 +2,7 @@
 
 namespace Apps\Models\Users;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

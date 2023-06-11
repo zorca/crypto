@@ -36,7 +36,7 @@ trait RequestTrait
     public static function instance()
     {
         $className = get_called_class();
-        if (!isset(self::$obj[$className])) {
+        if ( ! isset(self::$obj[$className])) {
             self::$obj[$className] = new self();
         }
         return self::$obj[$className];

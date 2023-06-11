@@ -8,13 +8,13 @@ try {
     $config = new \Apps\Core\Config\Config();
     $di = new Apps\Core\Apps\Apps($config);
     $router = new \Apps\Core\Router\Router($di->Server);
-    $result = $router->run();
-    if ($result and $result !== true) {
+    $result = (object)$router->run();
+    if (!isset($result->scalar) or (isset($result->scalar) and $result->scalar !== true)) {
         header('Content-type: application/json');
         echo json_encode($result);
-    } elseif (preg_match('~load(.+)~ui', $router::$patch) or $result === true) {
+    }elseif(preg_match('~load(.+)~ui', $router::$patch)){
         return true;
-    } else {
+    }else{
         header('Location: /error/404');
     }
 } catch (Exception $exc) {

@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -21,17 +21,17 @@ class Media
     public function parse($data)
     {
         $group = [];
-        for ($i = 0, $q = 0; $i < count($data); $i++) {
-            if (!isset($group[$q])) {
+        for ($i = 0, $q = 0; $i < count($data); $i ++) {
+            if ( ! isset($group[$q])) {
                 $group[$q] = '';
             }
             $group[$q] .= $data[$i] . ';';
-            if (!$data[$i]) {
-                $q++;
+            if ( ! $data[$i]) {
+                $q ++;
             }
         }
         foreach ($group as $key => $element) {
-            if (!empty(trim($element))) {
+            if ( ! empty(trim($element))) {
                 $media[$key] = new self();
                 $media[$key]->nickName = trim(preg_replace('~^Nick name:([\w\d\s]+);(.+)~ui', '$1', $element));
                 $media[$key]->connectName = trim(preg_replace('~^(.+);Connect name:([\w\d\s]+)?;(.+)~ui', '$2', $element));

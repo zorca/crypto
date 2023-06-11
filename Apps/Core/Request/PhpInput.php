@@ -2,9 +2,7 @@
 
 namespace Apps\Core\Request;
 
-use stdClass;
-
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -16,7 +14,7 @@ if (!defined('ROOT')) {
  * @author Зорин Алексей <zorinalexey59292@gmail.com>
  * @copyright 2022 разработчик Зорин Алексей Евгеньевич.
  */
-class PhpInput extends stdClass
+class PhpInput extends \stdClass
 {
 
     public function __get(string $name)

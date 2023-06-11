@@ -2,7 +2,7 @@
 
 namespace Apps\Web\Controllers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -23,7 +23,7 @@ class LoadController extends AbstractController
     public function getLoadAction(string $fileName)
     {
         $file = $this->Load->getByAlias($fileName, 1);
-        if (!$file) {
+        if ( ! $file) {
             header('Location: /error/404');
         }
         $file->flag = 1;

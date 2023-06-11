@@ -2,13 +2,12 @@
 
 namespace Apps\Core\Router;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\Config\Json;
 use Apps\Core\Request\Server;
-use stdClass;
 
 /**
  * Класс Router
@@ -59,7 +58,7 @@ class Router
     private function getMethod(Server $server)
     {
         if (isset($server->REQUEST_METHOD)) {
-            if (!empty($server->REQUEST_METHOD)) {
+            if ( ! empty($server->REQUEST_METHOD)) {
                 return mb_strtolower($server->REQUEST_METHOD);
             }
         }
@@ -74,7 +73,7 @@ class Router
     private function getPatch(Server $server): string
     {
         $patch = urldecode(trim(parse_url($server->REQUEST_URI, PHP_URL_PATH), '/'));
-        if (!$patch) {
+        if ( ! $patch) {
             return 'default';
         }
         return $patch;
@@ -108,11 +107,11 @@ class Router
 
     /**
      * Исполнение запроса
-     * @param stdClass $command Объект класса со свойствами для выполнения запроса
+     * @param \stdClass $command Объект класса со свойствами для выполнения запроса
      * @param string $pattern Шаблон регулярного выражения для поиска параметров
      * @return   Результат выполнения запроса
      */
-    private function command(stdClass $command)
+    private function command(\stdClass $command)
     {
         $controller = $command->controller;
         $action = $this->getAction($command->method);
@@ -132,7 +131,7 @@ class Router
     {
         if ($this->method === 'cli' and $method) {
             return $this->getCliAction($method);
-        } elseif (!$method) {
+        } elseif ( ! $method) {
             return $this->method . 'IndexAction';
         }
         return $this->method . ucfirst($this->getCliAction($method)) . 'Action';

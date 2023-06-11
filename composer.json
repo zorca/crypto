@@ -1,5 +1,5 @@
 {
-  "name": "zte/crypto_pro_api",
+  "name": "zte/cripto_pro_api",
   "autoload": {
     "psr-4": {
       "Apps\\": "Apps/"
@@ -14,8 +14,10 @@
   "require": {
     "php": ">=7.4",
     "cocur/slugify": "^4.1",
-    "cloud-castle/file-system": "^1.0"
+    "ext-pdo": "*"
   },
   "config": {
+  },
+  "require-dev": {
   }
 }

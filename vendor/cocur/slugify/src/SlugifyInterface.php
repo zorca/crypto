@@ -25,7 +25,7 @@ interface SlugifyInterface
     /**
      * Return a URL safe version of a string.
      *
-     * @param string            $string
+     * @param string $string
      * @param string|array|null $options
      *
      * @return string

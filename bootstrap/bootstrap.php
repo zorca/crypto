@@ -4,9 +4,9 @@ define('SEP', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)) . SEP);
 define('TMP', ROOT . 'tmp' . SEP);
 
-ini_set('display_errors', -1);
-ini_set('display_startup_errors', -1);
-ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+#ini_set('error_reporting', E_ALL);
 
 session_start();
 
@@ -33,4 +33,9 @@ function dd()
     return print_r(func_get_args(), true);
 }
 
-include_once ROOT . 'vendor' . SEP . 'autoload.php';
+spl_autoload_register(function ($className) {
+    $file = ROOT . str_replace('\\', SEP, $className) . '.php';
+    if (is_file($file)) {
+        include_once $file;
+    }
+});

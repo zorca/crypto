@@ -42,13 +42,13 @@ class Slugify implements SlugifyInterface
      * @var array<string,mixed>
      */
     protected $options = [
-        'regexp'    => self::LOWERCASE_NUMBERS_DASHES,
+        'regexp' => self::LOWERCASE_NUMBERS_DASHES,
         'separator' => '-',
         'lowercase' => true,
         'lowercase_after_regexp' => false,
         'trim' => true,
         'strip_tags' => false,
-        'rulesets'  => [
+        'rulesets' => [
             'default',
             // Languages are preferred if they appear later, list is ordered by number of
             // websites in that language
@@ -76,12 +76,12 @@ class Slugify implements SlugifyInterface
     ];
 
     /**
-     * @param array                 $options
+     * @param array $options
      * @param RuleProviderInterface $provider
      */
     public function __construct(array $options = [], RuleProviderInterface $provider = null)
     {
-        $this->options  = array_merge($this->options, $options);
+        $this->options = array_merge($this->options, $options);
         $this->provider = $provider ? $provider : new DefaultRuleProvider();
 
         foreach ($this->options['rulesets'] as $ruleSet) {
@@ -90,9 +90,21 @@ class Slugify implements SlugifyInterface
     }
 
     /**
+     * Static method to create new instance of {@see Slugify}.
+     *
+     * @param array <string,mixed> $options
+     *
+     * @return Slugify
+     */
+    public static function create(array $options = [])
+    {
+        return new static($options);
+    }
+
+    /**
      * Returns the slug-version of the string.
      *
-     * @param string            $string  String to slugify
+     * @param string $string String to slugify
      * @param string|array|null $options Options
      *
      * @return string Slugified version of the string
@@ -101,12 +113,12 @@ class Slugify implements SlugifyInterface
     {
         // BC: the second argument used to be the separator
         if (is_string($options)) {
-            $separator            = $options;
-            $options              = [];
+            $separator = $options;
+            $options = [];
             $options['separator'] = $separator;
         }
 
-        $options = array_merge($this->options, (array) $options);
+        $options = array_merge($this->options, (array)$options);
 
         // Add a custom ruleset without touching the default rules
         if (isset($options['ruleset'])) {
@@ -140,7 +152,7 @@ class Slugify implements SlugifyInterface
     /**
      * Adds a custom rule to Slugify.
      *
-     * @param string $character   Character
+     * @param string $character Character
      * @param string $replacement Replacement character
      *
      * @return Slugify
@@ -176,17 +188,5 @@ class Slugify implements SlugifyInterface
     public function activateRuleSet($ruleSet)
     {
         return $this->addRules($this->provider->getRules($ruleSet));
-    }
-
-    /**
-     * Static method to create new instance of {@see Slugify}.
-     *
-     * @param array <string,mixed> $options
-     *
-     * @return Slugify
-     */
-    public static function create(array $options = [])
-    {
-        return new static($options);
     }
 }

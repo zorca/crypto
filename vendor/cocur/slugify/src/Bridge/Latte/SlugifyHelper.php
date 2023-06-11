@@ -26,7 +26,7 @@ class SlugifyHelper
     }
 
     /**
-     * @param string      $string
+     * @param string $string
      * @param string|null $separator
      *
      * @return string

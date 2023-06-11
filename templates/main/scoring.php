@@ -1,3 +1,4 @@
+
 <section class="blog-details-section">
     <h5 class="text-center text-success">
         8 Скоринг клиента

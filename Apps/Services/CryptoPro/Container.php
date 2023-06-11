@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -20,7 +20,7 @@ class Container extends Bin
 
     public function view(string $containerName)
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . "csptestf" . self::ext . " -keyset -container '" . $containerName . "' -info";
+        $command = ' ' . self::bin_patch . "csptestf" . self::ext . " -keyset -container '" . $containerName . "' -info";
         $data = $this->command($command);
         $container = $this->parseContainer($data[0]);
         $container->patch = $containerName;
@@ -69,13 +69,13 @@ class Container extends Bin
     {
         $obj = new self();
         $user = $obj->command('echo $USER');
-        if (!$user[0][0]) {
+        if ( ! $user[0][0]) {
             $user = 'www-data';
         } else {
             $user = $user[0][0];
         }
         $dir = self::$keys_patch . $user;
-        if (!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
         $command = 'cd ' . $dir . ' && pwd';

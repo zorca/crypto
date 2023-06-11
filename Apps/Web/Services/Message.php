@@ -2,7 +2,7 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -24,7 +24,7 @@ class Message extends AbstractService
 
     public static function instance(): self
     {
-        if (!self::$self) {
+        if ( ! self::$self) {
             self::$self = new self();
         }
         return self::$self;
@@ -35,8 +35,8 @@ class Message extends AbstractService
         $messageFile = ROOT . 'private' . SEP . 'messages' . SEP . date('i:H-d.m.Y') . SEP . time() . '.' . $name;
         $dir = dirname($messageFile);
         $message = $this->post->message;
-        if (!empty($message)) {
-            if (!is_dir($dir)) {
+        if ( ! empty($message)) {
+            if ( ! is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
             if (file_put_contents($messageFile, $message)) {

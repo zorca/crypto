@@ -2,7 +2,7 @@
 
 namespace Apps\Services\Scorings\Library;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

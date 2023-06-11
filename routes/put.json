@@ -12,8 +12,6 @@
   "scoring/user(/(\\w+))?": {
     "controller": "\\Apps\\Web\\Controllers\\UserController",
     "method": "scoring",
-    "params": [
-      "$2"
-    ]
+    "params": ["$2"]
   }
 }

@@ -2,13 +2,12 @@
 
 namespace Apps\Web\Services;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\AbstractClasses\AbstractService;
 use Apps\Core\Request\Patch;
-use Apps\Core\Request\Put;
 
 /**
  * Класс Users
@@ -23,14 +22,6 @@ class Users extends AbstractService
 {
 
     static $obj;
-    private static array $userPutFilds = [
-        'last',
-        'first',
-        'middle',
-        'gender',
-        'doc',
-        'birthday'
-    ];
     private $user;
     private $id;
     private $phone;
@@ -39,7 +30,7 @@ class Users extends AbstractService
 
     public static function instance(): self
     {
-        if (!self::$obj) {
+        if ( ! self::$obj) {
             self::$obj = new self();
         }
         return self::$obj;
@@ -47,9 +38,19 @@ class Users extends AbstractService
 
     public static function createNewUserByCertificate($certInfo)
     {
+        $cert = false;
         $user = new \Apps\Models\Users\Users();
-        $user->container = $certInfo->container->containerName;
-        $user->thumbprint = $certInfo->sha1;
+        foreach (\Apps\Services\CryptoPro\Certificates::instance()->getList() as $cert) {
+            if (mb_strtoupper($cert->subject->data) === mb_strtoupper($certInfo->subject->data)) {
+                $certInfo = $cert;
+                break;
+            }
+        }
+        if ( ! $cert) {
+            $cert = $certInfo;
+        }
+        $user->container = $cert->container->containerName;
+        $user->thumbprint = $cert->sha1;
         foreach ($certInfo->subject as $key => $value) {
             $user->$key = $value;
         }
@@ -84,7 +85,7 @@ class Users extends AbstractService
     private function setEmail()
     {
         $email = $this->post->email;
-        if (!$email) {
+        if ( ! $email) {
             $email = $this->get->email;
         }
         $this->email = $email;
@@ -93,7 +94,7 @@ class Users extends AbstractService
     private function setId()
     {
         $id = $this->post->get('user_id', 'int');
-        if (!$id) {
+        if ( ! $id) {
             $id = $this->get->get('user_id', 'int');
         }
         $this->id = $id;
@@ -102,7 +103,7 @@ class Users extends AbstractService
     private function setPhone()
     {
         $phone = $this->post->phone;
-        if (!$phone) {
+        if ( ! $phone) {
             $phone = $this->get->phone;
         }
         $this->phone = $this->phoneFormat($phone);
@@ -111,7 +112,7 @@ class Users extends AbstractService
     private function setUid()
     {
         $uid = $this->post->uid;
-        if (!$uid) {
+        if ( ! $uid) {
             $uid = $this->get->uid;
         }
         $this->uid = $uid;
@@ -145,20 +146,20 @@ class Users extends AbstractService
     public function getDn(Patch $user): string
     {
         $str = '';
-        !empty($user->country) ? $str .= 'C="' . $user->country . '"' : null;
-        !empty($user->region) ? $str .= ', S="' . $user->region . '"' : null;
-        !empty($user->city) ? $str .= ', L="' . $user->city . '"' : null;
-        !empty($user->street) ? $str .= ', STREET="' . $user->street . '"' : null;
-        !empty($user->name_company) ? $str .= ', O="' . $user->name_company . '"' : null;
-        !empty($user->full_name_company) ? $str .= ', CN="' . $user->full_name_company . '"' : null;
-        !empty($user->name) ? $str .= ', G="' . $user->name . '"' : null;
-        !empty($user->last_name) ? $str .= ', SN="' . $user->last_name . '"' : null;
-        !empty($user->official) ? $str .= ', T="' . $user->official . '"' : null;
+        ! empty($user->country)?$str .= 'C="' . $user->country . '"':null;
+        ! empty($user->region)?$str .= ', S="' . $user->region . '"':null;
+        ! empty($user->city)?$str .= ', L="' . $user->city . '"':null;
+        ! empty($user->street)?$str .= ', STREET="' . $user->street . '"':null;
+        ! empty($user->name_company)?$str .= ', O="' . $user->name_company . '"':null;
+        ! empty($user->full_name_company)?$str .= ', CN="' . $user->full_name_company . '"':null;
+        ! empty($user->name)?$str .= ', G="' . $user->name . '"':null;
+        ! empty($user->last_name)?$str .= ', SN="' . $user->last_name . '"':null;
+        ! empty($user->official)?$str .= ', T="' . $user->official . '"':null;
         #!empty($user->snils) ? $str .= ', СНИЛС="' . $user->snils . '"' : null;
         #!empty($user->ogrn) ? $str .= ', ОГРН="' . $user->ogrn . '"' : null;
         #!empty($user->inn_yl) ? $str .= ', "ИНН ЮЛ"="' . $user->inn_yl . '"' : null;
-        !empty($user->INN) ? $str .= ', ИНН="' . $user->INN . '"' : null;
-        !empty($user->email) ? $str .= ', E="' . $user->email . '"' : null;
+        ! empty($user->INN)?$str .= ', ИНН="' . $user->INN . '"':null;
+        ! empty($user->email)?$str .= ', E="' . $user->email . '"':null;
         return $this->getDnValue($str);
     }
 
@@ -176,12 +177,21 @@ class Users extends AbstractService
         return $user;
     }
 
+    private static array $userPutFilds = [
+        'last',
+        'first',
+        'middle',
+        'gender',
+        'doc',
+        'birthday'
+    ];
+
     public function scoringUser()
     {
         $error = [];
-        $user = new Put();
+        $user = new \Apps\Core\Request\Put();
         foreach (self::$userPutFilds as $value) {
-            if (!$user->get($value)) {
+            if ( ! $user->get($value)) {
                 $error[] = 'не указано свойство ' . $value;
             }
         }

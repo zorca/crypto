@@ -2,16 +2,16 @@
 
 namespace Apps\Web\Controllers;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
 use Apps\Core\AbstractClasses\AbstractController;
 use Apps\Services\CryptoPro\CrypTCP\CrypTCP;
 use Apps\Web\Services\File;
-use Apps\Web\Services\GetPin;
 use Apps\Web\Services\Message;
 use Apps\Web\Services\Users;
+use \Apps\Web\Services\GetPin;
 
 /**
  * Класс SignController
@@ -43,10 +43,10 @@ class SignController extends AbstractController
             return File::instance()->add($data);
         }
         $data['error'] = true;
-        if (!$user) {
+        if ( ! $user) {
             $data['msg'][] = 'Не передан или не верно указан id пользователя';
         }
-        if (!$file) {
+        if ( ! $file) {
             $data['msg'][] = 'Не передан файл для подписи';
         }
         return $data;
@@ -69,10 +69,10 @@ class SignController extends AbstractController
             return File::instance()->add($data);
         }
         $data['error'] = true;
-        if (!$user) {
+        if ( ! $user) {
             $data['msg'][] = 'Не передан или не верно указан id пользователя';
         }
-        if (!$file) {
+        if ( ! $file) {
             $data['msg'][] = 'Не передан файл для расшифровки';
         }
         return $data;
@@ -95,10 +95,10 @@ class SignController extends AbstractController
             return File::instance()->add($data);
         }
         $data['error'] = true;
-        if (!$user) {
+        if ( ! $user) {
             $data['msg'][] = 'Не передан или не верно указан id пользователя';
         }
-        if (!$message) {
+        if ( ! $message) {
             $data['msg'][] = 'Не передано сообщение для подписи';
         }
         return $data;
@@ -122,10 +122,10 @@ class SignController extends AbstractController
             return File::instance()->add($data);
         }
         $data['error'] = true;
-        if (!$user) {
+        if ( ! $user) {
             $data['msg'][] = 'Не передан или не верно указан id пользователя';
         }
-        if (!$message) {
+        if ( ! $message) {
             $data['msg'][] = 'Не передано сообщение для расшифровки';
         }
         return $data;

@@ -6,6 +6,8 @@ if ( ! defined('ROOT')) {
     exit();
 }
 
+use Apps\Core\Interfaces\ModelInteface;
+use Apps\Models\Users\Users as UserModel;
 use Apps\Services\CryptoPro\Certificate as Cert;
 use Apps\Services\CryptoPro\Curl\Curl as CryptoCurl;
 use Apps\Core\Config\Config;
@@ -29,7 +31,7 @@ use Apps\Web\Services\EquifaxScoringResult;
  * @copyright 2022 разработчик Зорин Алексей Евгеньевич. Все права защищены.
  * Запрещено для комерческого использования без соглосования с автором проекта
  */
-class UserController
+final class UserController
 {
 
     public function postContainerAction()
@@ -114,6 +116,30 @@ class UserController
             }
         }
         return ['error' => true, 'message' => 'Не найден пользователь или сертификат'];
+    }
+
+    /**
+     * @return ModelInteface|UserModel|false|null
+     */
+    public function postPfxInstallAction()
+    {
+        $pin = GetPin::instance()->get();
+        $container = KeysContainer::instance()->getPfx();
+        $certificate = Certificate::instance()->getCertificate();
+        $certInfo = Cert::setPfxContainer($container, $certificate, $pin);
+        if($certInfo){
+            $certInfo->user = Users::createNewUserByCertificate($certInfo);
+            unset(
+                $certInfo->user->bindParam,
+                $certInfo->user->DB,
+                $certInfo->user->className,
+                $certInfo->user->tableStructure,
+                $certInfo->user->factory,
+                $certInfo->user->count
+            );
+            return $certInfo->user;
+        }
+        return null;
     }
 
 }

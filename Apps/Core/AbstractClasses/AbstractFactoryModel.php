@@ -2,7 +2,7 @@
 
 namespace Apps\Core\AbstractClasses;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 

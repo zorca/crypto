@@ -2,7 +2,7 @@
 
 namespace Apps\Core\Apps;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -54,7 +54,7 @@ class Apps
 
     public function __set(string $name, $value): void
     {
-        if (!isset(self::$data[$name])) {
+        if ( ! isset(self::$data[$name])) {
             self::$data[$name] = $value;
         }
     }

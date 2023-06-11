@@ -1,5 +1,5 @@
 {
-  "host": "dev.zte.localhost",
-  "port": 8071,
-  "phpBinFile": "/usr/bin/php7.4"
+    "host": "dev.zte.localhost",
+    "port": 8071,
+    "phpBinFile": "/usr/bin/php7.4"
 }

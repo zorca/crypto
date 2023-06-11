@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -33,7 +33,7 @@ class Info extends Bin
      */
     public function viewMedia()
     {
-        $command = 'sudo -u www-data ' . self::$sbin_patch . 'cpconfig' . ' -hardware media -view | iconv -f cp1251';
+        $command = ' ' . self::$sbin_patch . 'cpconfig' . ' -hardware media -view | iconv -f cp1251';
         $data = $this->command($command);
         return $this->result((new Media())->parse($data[0]));
     }
@@ -57,7 +57,7 @@ class Info extends Bin
 
     public function viewContainers()
     {
-        $command = 'sudo -u www-data ' . self::bin_patch . 'csptest' . ' -keyset -enum_cont -fqcn -verifyc';
+        $command = ' ' . self::bin_patch . 'csptest' . ' -keyset -enum_cont -fqcn -verifyc';
         $data = $this->command($command);
         $count = count($data[0]);
         unset($data[0][0], $data[0][1], $data[0][$count - 1], $data[0][$count - 2], $data[0][$count - 3]);

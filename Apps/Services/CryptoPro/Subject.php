@@ -2,7 +2,7 @@
 
 namespace Apps\Services\CryptoPro;
 
-if (!defined('ROOT')) {
+if ( ! defined('ROOT')) {
     exit();
 }
 
@@ -42,7 +42,8 @@ class Subject
     {
         foreach (explode(',', $this->data) as $value) {
             $matches = [];
-            preg_match('~^(?<key>.+)=(?<value>.+)$~', trim($value), $matches);
+            $pattern = '~^(?<key>.+)=(?<value>.+)$~ium';
+            preg_match($pattern, trim($value), $matches);
             if (isset($matches['key']) and isset($matches['value'])) {
                 $this->set($matches['key'], $matches['value']);
             }

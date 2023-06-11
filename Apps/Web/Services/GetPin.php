@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Apps\Web\Services;
 
@@ -20,7 +20,7 @@ class GetPin extends AbstractService
     public function get()
     {
         $pin = $this->get->get('pin');
-        if (!$pin) {
+        if ( ! $pin) {
             $pin = $this->post->get('pin');
         }
         return $pin;

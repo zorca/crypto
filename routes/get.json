@@ -13,7 +13,7 @@
   },
   "list": {
     "controller": "\\Apps\\Web\\Controllers\\UserController",
-    "method": "list",
+    "method": "viewUser",
     "params": []
   },
   "view/license": {
@@ -42,11 +42,6 @@
     "params": [
       "$1"
     ]
-  },
-  "report/result": {
-    "controller": "\\Apps\\Web\\Controllers\\HistoryController",
-    "method": "result",
-    "params": []
   },
   "(.+)?": {
     "controller": "\\Apps\\Web\\Error",
