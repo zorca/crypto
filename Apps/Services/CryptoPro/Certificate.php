@@ -394,7 +394,6 @@ class Certificate extends Bin
             $certPfx = (Certificates::parseCerts(implode("\n", $output)))[0];
             $certPfx->subject = $certInfo->subject;
             $certPfx->issuer = $certInfo->issuer;
-            dd($output);
             return $certPfx;
         }
         return null;
