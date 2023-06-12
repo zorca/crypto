@@ -3,7 +3,7 @@
 2) php7.4-cgi, php7.4-cli
 3) mysql 8.0 (postresql 13) или более новой версии
 4) crypto-pro 5.0 или более новой версии
-5) ОС *unix подобная основаная на debian (Ubuntu 20.04, Linux Mint, Debian 10 и их производные)
+5) ОС *unix подобная основанная на debian (Ubuntu 20.04, Linux Mint, Debian 10 и их производные)
 
                     Установка apache 2.4 + php8
 sudo apt install apache php7.4 php7.4-cli php7.4-cgi php7.4-pdo php7.4-xml php7.4-zip
