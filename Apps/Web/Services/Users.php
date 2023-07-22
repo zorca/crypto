@@ -47,9 +47,19 @@ class Users extends AbstractService
 
     public static function createNewUserByCertificate($certInfo)
     {
+        $cert = false;
         $user = new \Apps\Models\Users\Users();
-        $user->container = $certInfo->container->containerName;
-        $user->thumbprint = $certInfo->sha1;
+        foreach (\Apps\Services\CryptoPro\Certificates::instance()->getList() as $cert) {
+            if (mb_strtoupper($cert->subject->data) === mb_strtoupper($certInfo->subject->data)) {
+                $certInfo = $cert;
+                break;
+            }
+        }
+        if ( ! $cert) {
+            $cert = $certInfo;
+        }
+        $user->container = $cert->container->containerName;
+        $user->thumbprint = $cert->sha1;
         foreach ($certInfo->subject as $key => $value) {
             $user->$key = $value;
         }

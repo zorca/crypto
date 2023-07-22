@@ -74,4 +74,20 @@ class KeysContainer extends AbstractService
         }
     }
 
+    public function getPfx():?string
+    {
+        $container = $this->files->container;
+        if ($container) {
+            $certFile = ROOT . 'private' . SEP . 'containers'.SEP.'pfx' . SEP . $container->name;
+            $dir = dirname($certFile);
+            if (!is_dir($dir) && !mkdir($dir, 0777, true) && !is_dir($dir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
+            }
+            if (move_uploaded_file($container->tmp_name, $certFile)) {
+                return $certFile;
+            }
+        }
+        return null;
+    }
+
 }

@@ -364,4 +364,30 @@ class Certificate extends Bin
         }
     }
 
+    public static function setPfxContainer(string $pfxFile, string $cert, ?string $pin = null): ?self
+    {
+        $certInfo = false;
+        exec(self::bin_patch.'certmgr -list -f "'.$cert.'"', $output, $resultCode);
+        if(!$resultCode){
+            $certInfo = (Certificates::parseCerts(implode("\n", $output)))[0];
+            unset($output);
+            $command = ' ' . self::$bin_patch .'certmgr -install -pfx -file "'.$pfxFile.'"';
+            if($pin){
+                $command .= ' -pin '.$pin;
+            }
+            $command .= ' -silent';
+            exec($command, $output, $resultCode);
+        }
+        if(!$resultCode && $certInfo){
+            unset($output);
+            $command = self::bin_patch.'certmgr -list -chain -thumbprint '.$certInfo->sha1;
+            exec($command, $output, $resultCode);
+            $certPfx = (Certificates::parseCerts(implode("\n", $output)))[0];
+            $certPfx->subject = $certInfo->subject;
+            $certPfx->issuer = $certInfo->issuer;
+            return $certPfx;
+        }
+        return null;
+    }
+
 }

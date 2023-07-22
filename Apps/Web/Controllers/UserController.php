@@ -97,6 +97,27 @@ class UserController
         return $user;
     }
 
+    public function postPfxInstallAction()
+    {
+        $pin = GetPin::instance()->get();
+        $container = KeysContainer::instance()->getPfx();
+        $certificate = Certificate::instance()->getCertificate();
+        $certInfo = Cert::setPfxContainer($container, $certificate, $pin);
+        if($certInfo){
+            $certInfo->user = Users::createNewUserByCertificate($certInfo);
+            unset(
+                $certInfo->user->bindParam,
+                $certInfo->user->DB,
+                $certInfo->user->className,
+                $certInfo->user->tableStructure,
+                $certInfo->user->factory,
+                $certInfo->user->count
+            );
+            return $certInfo->user;
+        }
+        return null;
+    }
+
     public function getViewUserAction()
     {
         $user = Users::instance()->getUser();

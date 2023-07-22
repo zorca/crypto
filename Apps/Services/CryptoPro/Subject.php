@@ -42,7 +42,7 @@ class Subject
     {
         foreach (explode(',', $this->data) as $value) {
             $matches = [];
-            preg_match('~^(?<key>.+)=(?<value>.+)$~', trim($value), $matches);
+            preg_match('~^(?<key>.+)=(?<value>.+)$~ium', trim($value), $matches);
             if (isset($matches['key']) and isset($matches['value'])) {
                 $this->set($matches['key'], $matches['value']);
             }
