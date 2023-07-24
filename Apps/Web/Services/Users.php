@@ -58,7 +58,8 @@ class Users extends AbstractService
         if ( ! $cert) {
             $cert = $certInfo;
         }
-        $user->container = $cert->container->containerName;
+        //$user->container = $cert->container->containerName;
+		$user->container = $cert->container;
         $user->thumbprint = $cert->sha1;
         foreach ($certInfo->subject as $key => $value) {
             $user->$key = $value;
