@@ -371,7 +371,7 @@ class Certificate extends Bin
         if(!$resultCode){
             $certInfo = (Certificates::parseCerts(implode("\n", $output)))[0];
             unset($output);
-            $command = ' ' . self::$bin_patch .'certmgr -install -pfx -file "'.$pfxFile.'"';
+            $command = ' ' . self::bin_patch .'certmgr -install -pfx -file "'.$pfxFile.'"';
             if($pin){
                 $command .= ' -pin '.$pin;
             }
